@@ -7,13 +7,38 @@ public partial class Crate : StaticBody2D
 	[Export] private PackedScene HeartScene;
 	[Export] private PackedScene GoldCrumbleScene; 
 
+    private RandomNumberGenerator rng = new RandomNumberGenerator();
+
+    public override void _Ready()
+	{
+		rng.Randomize();
+	}
 	public void Destroy()
 	{
-		// TryDrop()
+		TryDrop();
 		CallDeferred("queue_free");
 	}
 
-	// private void TryDrop(){}  ------->  Crates will drop a GoldCrumble(30%) OR a Heart(10%)
+	private void TryDrop()
+	{
+        int roll = rng.RandiRange(1, 100);
+
+        if (roll <= 10)
+        {
+            SpawnDrop(HeartScene);
+        }
+        else if (roll <= 40) 
+        {
+            SpawnDrop(GoldCrumbleScene);
+        }		
+	}
+
+	private void SpawnDrop(PackedScene scene)
+	{
+		var drop = scene.Instantiate<Interactable>();
+		GetTree().CurrentScene.AddChild(drop);
+		drop.GlobalPosition = GlobalPosition;
+	}
 
 
 }
