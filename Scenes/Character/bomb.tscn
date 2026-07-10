@@ -1,0 +1,88 @@
+[gd_scene load_steps=9 format=3 uid="uid://caexyq805rtjn"]
+
+[ext_resource type="Script" uid="uid://ddymkkaumtb2" path="res://Scripts/Character/Bomb.cs" id="1_81qks"]
+[ext_resource type="Texture2D" uid="uid://xqan7cy0omaw" path="res://Assets/Sprites/Character/DJBombTemp.png" id="1_g8lvg"]
+[ext_resource type="PackedScene" uid="uid://bf4q4xab8wuvr" path="res://Scenes/Character/explosion_radius.tscn" id="3_64gig"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_81qks"]
+radius = 7.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_64gig"]
+radius = 7.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gc2k3"]
+radius = 29.0
+
+[sub_resource type="Shader" id="Shader_0ryu3"]
+code = "shader_type canvas_item;
+
+uniform float radius_px : hint_range(0.0, 200.0) = 32.0;
+uniform vec4 circle_color : source_color = vec4(1.0, 0.0, 0.0, 0.8);
+uniform vec2 rect_size = vec2(128.0, 128.0);
+uniform float pixel_size : hint_range(1.0, 32.0) = 4.0; // tamanho do \"pixel\" retrô
+uniform float thickness_px : hint_range(0.0, 20.0) = 4.0;
+
+void fragment() {
+	// Posição em pixels, centralizada
+	vec2 pixel_pos = (UV - vec2(0.5)) * rect_size;
+
+	// AQUI está a mágica: arredonda a posição para a grade de \"pixels grandes\"
+	vec2 snapped_pos = floor(pixel_pos / pixel_size) * pixel_size;
+
+	float dist = length(snapped_pos);
+
+	// Sem smoothstep suave - usa step() para bordas duras (sem antialiasing)
+	float outer_edge = step(dist, radius_px);
+	float inner_edge = step(dist, radius_px - thickness_px);
+
+	float ring = outer_edge - inner_edge;
+
+	COLOR = vec4(circle_color.rgb, circle_color.a * ring);
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_64gig"]
+resource_local_to_scene = true
+shader = SubResource("Shader_0ryu3")
+shader_parameter/radius_px = 50.000002375
+shader_parameter/circle_color = Color(1, 1, 1, 1)
+shader_parameter/rect_size = Vector2(128, 128)
+shader_parameter/pixel_size = 1.0
+shader_parameter/thickness_px = 2.000000095
+
+[node name="Bomb" type="StaticBody2D" node_paths=PackedStringArray("BombCollision", "ExplosionArea", "ExplosionRadius", "ExplosionTimer")]
+script = ExtResource("1_81qks")
+BombCollision = NodePath("CollisionShape2D")
+ExplosionArea = NodePath("ExplosionArea")
+ExplosionRadius = NodePath("ExplosionRadius")
+ExplosionTimer = NodePath("ExplosionTimer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_81qks")
+disabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_g8lvg")
+
+[node name="PlayerDetectionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetectionArea"]
+shape = SubResource("CircleShape2D_64gig")
+debug_color = Color(0.95114046, 2.5990605e-06, 0.5675552, 0.41960785)
+
+[node name="ExplosionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionArea"]
+shape = SubResource("CircleShape2D_gc2k3")
+debug_color = Color(0.65107334, 0.51971495, 0, 0.41960785)
+
+[node name="ExplosionTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="ExplosionRadius" parent="." instance=ExtResource("3_64gig")]
+material = SubResource("ShaderMaterial_64gig")
+
+[connection signal="body_exited" from="PlayerDetectionArea" to="." method="_on_player_detection_area_body_exited"]
+[connection signal="body_entered" from="ExplosionArea" to="." method="_on_explosion_area_body_entered"]
+[connection signal="body_exited" from="ExplosionArea" to="." method="_on_explosion_area_body_exited"]
+[connection signal="timeout" from="ExplosionTimer" to="." method="_on_explosion_timer_timeout"]

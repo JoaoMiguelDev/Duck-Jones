@@ -1,3 +1,24 @@
-[gd_scene format=3 uid="uid://bumykpnxt3y4v"]
+[gd_scene load_steps=5 format=3 uid="uid://bumykpnxt3y4v"]
 
-[node name="DuckJones" type="CharacterBody2D"]
+[ext_resource type="Script" uid="uid://cps0vd08dwqf2" path="res://Scripts/Character/DuckJones.cs" id="1_jyhri"]
+[ext_resource type="PackedScene" uid="uid://caexyq805rtjn" path="res://Scenes/Character/bomb.tscn" id="2_h8iga"]
+[ext_resource type="Texture2D" uid="uid://0a8dg3446lo0" path="res://Assets/Sprites/Character/DuckJonesTemp (1).png" id="2_hqmb3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h8iga"]
+size = Vector2(10, 10)
+
+[node name="DuckJones" type="CharacterBody2D" node_paths=PackedStringArray("BombPlaceTimer")]
+script = ExtResource("1_jyhri")
+BombScene = ExtResource("2_h8iga")
+BombPlaceTimer = NodePath("BombPlaceTimer")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_hqmb3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_h8iga")
+
+[node name="BombPlaceTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="BombPlaceTimer" to="." method="_on_bomb_place_timer_timeout"]

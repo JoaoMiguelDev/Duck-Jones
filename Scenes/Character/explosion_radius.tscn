@@ -1,0 +1,112 @@
+[gd_scene load_steps=10 format=3 uid="uid://bf4q4xab8wuvr"]
+
+[ext_resource type="Script" uid="uid://cxpat2actf1jo" path="res://Scripts/Character/ExplosionRadius.cs" id="2_1ujkc"]
+
+[sub_resource type="Shader" id="Shader_0ryu3"]
+code = "shader_type canvas_item;
+
+uniform float radius_px : hint_range(0.0, 200.0) = 32.0;
+uniform vec4 circle_color : source_color = vec4(1.0, 0.0, 0.0, 0.8);
+uniform vec2 rect_size = vec2(128.0, 128.0);
+uniform float pixel_size : hint_range(1.0, 32.0) = 4.0; // tamanho do \"pixel\" retrô
+uniform float thickness_px : hint_range(0.0, 20.0) = 4.0;
+
+void fragment() {
+	// Posição em pixels, centralizada
+	vec2 pixel_pos = (UV - vec2(0.5)) * rect_size;
+
+	// AQUI está a mágica: arredonda a posição para a grade de \"pixels grandes\"
+	vec2 snapped_pos = floor(pixel_pos / pixel_size) * pixel_size;
+
+	float dist = length(snapped_pos);
+
+	// Sem smoothstep suave - usa step() para bordas duras (sem antialiasing)
+	float outer_edge = step(dist, radius_px);
+	float inner_edge = step(dist, radius_px - thickness_px);
+
+	float ring = outer_edge - inner_edge;
+
+	COLOR = vec4(circle_color.rgb, circle_color.a * ring);
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_unlne"]
+resource_local_to_scene = true
+shader = SubResource("Shader_0ryu3")
+shader_parameter/radius_px = 50.000002375
+shader_parameter/circle_color = Color(1, 1, 1, 1)
+shader_parameter/rect_size = Vector2(128, 128)
+shader_parameter/pixel_size = 1.0
+shader_parameter/thickness_px = 2.000000095
+
+[sub_resource type="Gradient" id="Gradient_mv8k8"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_s1lfl"]
+gradient = SubResource("Gradient_mv8k8")
+width = 75
+height = 75
+
+[sub_resource type="Animation" id="Animation_a6v6q"]
+resource_name = "duckoutarea"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/circle_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_m6mgx"]
+resource_name = "duckinarea"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/circle_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.9607, 0, 0.23173562, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_nedb1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/circle_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nj2hj"]
+_data = {
+&"RESET": SubResource("Animation_nedb1"),
+&"duckinarea": SubResource("Animation_m6mgx"),
+&"duckoutarea": SubResource("Animation_a6v6q")
+}
+
+[node name="ExplosionRadius" type="Sprite2D" node_paths=PackedStringArray("CircleColor")]
+material = SubResource("ShaderMaterial_unlne")
+texture = SubResource("GradientTexture2D_s1lfl")
+script = ExtResource("2_1ujkc")
+CircleColor = NodePath("AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_nj2hj")
+}
