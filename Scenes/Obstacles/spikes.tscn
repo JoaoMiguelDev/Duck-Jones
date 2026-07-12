@@ -12,6 +12,7 @@ Collision = NodePath("CollisionShape2D")
 RetractTimer = NodePath("RetractTimer")
 ProtractTimer = NodePath("ProtractTimer")
 SpikeSprite = NodePath("Sprite2D")
+ProtractTimerValue = 1.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_42v1o")

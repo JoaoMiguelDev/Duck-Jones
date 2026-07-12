@@ -5,8 +5,9 @@ public partial class DuckJones : CharacterBody2D
 {
 	[Export] private PackedScene BombScene;
 	[Export] private Timer BombPlaceTimer;
-	public const float Speed = 150.0f;
+	public const float Speed = 100.0f;
 	private bool CanPlaceBomb = true;
+	public bool HasKey { get; set; } = false;
 
 	public override void _PhysicsProcess(double delta)
 	{
@@ -49,5 +50,4 @@ public partial class DuckJones : CharacterBody2D
 		CanPlaceBomb = true;
 	}
 
-	
 }

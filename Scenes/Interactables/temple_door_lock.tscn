@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://congpvxd3puov"]
+
+[ext_resource type="Script" uid="uid://dvfsj6esis88d" path="res://Scripts/Interactables/TempleDoorLock.cs" id="1_7jfsr"]
+[ext_resource type="Texture2D" uid="uid://c8gikt8ksfapt" path="res://Assets/Sprites/Interactables/DJLockTemp.png" id="1_by02a"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7jfsr"]
+radius = 25.0
+
+[node name="TempleDoorLock" type="Area2D"]
+script = ExtResource("1_7jfsr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_by02a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_7jfsr")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

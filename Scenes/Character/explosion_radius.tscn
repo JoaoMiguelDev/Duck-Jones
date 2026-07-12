@@ -46,8 +46,7 @@ gradient = SubResource("Gradient_mv8k8")
 width = 75
 height = 75
 
-[sub_resource type="Animation" id="Animation_a6v6q"]
-resource_name = "duckoutarea"
+[sub_resource type="Animation" id="Animation_nedb1"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -78,7 +77,8 @@ tracks/0/keys = {
 "values": [Color(0.9607, 0, 0.23173562, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_nedb1"]
+[sub_resource type="Animation" id="Animation_a6v6q"]
+resource_name = "duckoutarea"
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false

@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2edsocoim1vg"]
+
+[ext_resource type="Script" uid="uid://cjcfllald6dn6" path="res://Scripts/Interactables/TempleDoor.cs" id="1_056t5"]
+[ext_resource type="Texture2D" uid="uid://bhshebjuyxopm" path="res://Assets/Sprites/Interactables/DJtempsGate.png" id="1_axstq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_056t5"]
+size = Vector2(32, 12)
+
+[node name="TempleDoor" type="StaticBody2D" node_paths=PackedStringArray("Collision", "TempleDoorSprite")]
+script = ExtResource("1_056t5")
+Collision = NodePath("CollisionShape2D")
+TempleDoorSprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_axstq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_056t5")
