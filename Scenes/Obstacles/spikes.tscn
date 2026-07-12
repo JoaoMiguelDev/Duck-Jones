@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://bbp3ny02icpx1"]
+
+[ext_resource type="Script" uid="uid://bmdipl7lvu44s" path="res://Scripts/Obstacles/Spikes.cs" id="1_c8qqk"]
+[ext_resource type="Texture2D" uid="uid://bkr2o54aoh5kc" path="res://Assets/Sprites/Obstacles/DJtempSpike.png" id="2_42v1o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rkkd8"]
+size = Vector2(16, 16)
+
+[node name="Spikes" type="Area2D" node_paths=PackedStringArray("Collision", "RetractTimer", "ProtractTimer", "SpikeSprite")]
+script = ExtResource("1_c8qqk")
+Collision = NodePath("CollisionShape2D")
+RetractTimer = NodePath("RetractTimer")
+ProtractTimer = NodePath("ProtractTimer")
+SpikeSprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_42v1o")
+hframes = 2
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_rkkd8")
+
+[node name="RetractTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="ProtractTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="RetractTimer" to="." method="_on_retract_timer_timeout"]
+[connection signal="timeout" from="ProtractTimer" to="." method="_on_protract_timer_timeout"]

@@ -1,8 +1,11 @@
-[gd_scene load_steps=8 format=4 uid="uid://cuv1uw3utp4j2"]
+[gd_scene load_steps=11 format=4 uid="uid://cuv1uw3utp4j2"]
 
 [ext_resource type="Texture2D" uid="uid://wftrmfx4ng4f" path="res://Assets/Sprites/Tiles/DJtilestemp.png" id="1_b07c4"]
 [ext_resource type="PackedScene" uid="uid://bumykpnxt3y4v" path="res://Scenes/Character/duck_jones.tscn" id="2_2ytpj"]
 [ext_resource type="PackedScene" uid="uid://bhhlcwamlfxs6" path="res://Scenes/Obstacles/crate.tscn" id="2_db73o"]
+[ext_resource type="PackedScene" uid="uid://gtk4fvcvhd0d" path="res://Scenes/Obstacles/pitfall.tscn" id="4_npfmg"]
+[ext_resource type="PackedScene" uid="uid://i70ul41uq71y" path="res://Scenes/Obstacles/weak_tile.tscn" id="5_k8g1k"]
+[ext_resource type="PackedScene" uid="uid://bbp3ny02icpx1" path="res://Scenes/Obstacles/spikes.tscn" id="6_k8g1k"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2ytpj"]
 texture = ExtResource("1_b07c4")
@@ -33,5 +36,93 @@ tile_map_data = PackedByteArray("AAD9//j/AQAAAAAAAQD9//n/AQAAAAAAAQD+//j/AQAAAAA
 tile_set = SubResource("TileSet_k8g1k")
 
 [node name="DuckJones" parent="." instance=ExtResource("2_2ytpj")]
+z_index = 5
 
 [node name="Camera2D" type="Camera2D" parent="DuckJones"]
+
+[node name="Pitfalls" type="Node2D" parent="."]
+
+[node name="Pitfall" parent="Pitfalls" instance=ExtResource("4_npfmg")]
+position = Vector2(40, 24)
+
+[node name="Pitfall2" parent="Pitfalls" instance=ExtResource("4_npfmg")]
+position = Vector2(56, 8)
+
+[node name="Pitfall3" parent="Pitfalls" instance=ExtResource("4_npfmg")]
+position = Vector2(72, 24)
+
+[node name="Pitfall4" parent="Pitfalls" instance=ExtResource("4_npfmg")]
+position = Vector2(56, 40)
+
+[node name="Pitfall5" parent="Pitfalls" instance=ExtResource("4_npfmg")]
+position = Vector2(72, 40)
+
+[node name="Pitfall6" parent="Pitfalls" instance=ExtResource("4_npfmg")]
+position = Vector2(72, 8)
+
+[node name="Pitfall7" parent="Pitfalls" instance=ExtResource("4_npfmg")]
+position = Vector2(40, 8)
+
+[node name="Pitfall8" parent="Pitfalls" instance=ExtResource("4_npfmg")]
+position = Vector2(40, 40)
+
+[node name="WeakTiles" type="Node2D" parent="."]
+
+[node name="WeakTile" parent="WeakTiles" instance=ExtResource("5_k8g1k")]
+position = Vector2(-56, -40)
+
+[node name="WeakTile2" parent="WeakTiles" instance=ExtResource("5_k8g1k")]
+position = Vector2(-40, -40)
+
+[node name="WeakTile3" parent="WeakTiles" instance=ExtResource("5_k8g1k")]
+position = Vector2(-24, -40)
+
+[node name="WeakTile4" parent="WeakTiles" instance=ExtResource("5_k8g1k")]
+position = Vector2(-8, -40)
+
+[node name="WeakTile5" parent="WeakTiles" instance=ExtResource("5_k8g1k")]
+position = Vector2(8, -40)
+
+[node name="WeakTile6" parent="WeakTiles" instance=ExtResource("5_k8g1k")]
+position = Vector2(24, -40)
+
+[node name="WeakTile7" parent="WeakTiles" instance=ExtResource("5_k8g1k")]
+position = Vector2(40, -40)
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Spikes" parent="Node2D" instance=ExtResource("6_k8g1k")]
+position = Vector2(40, 88)
+
+[node name="Spikes3" parent="Node2D" instance=ExtResource("6_k8g1k")]
+position = Vector2(72, 88)
+
+[node name="Spikes4" parent="Node2D" instance=ExtResource("6_k8g1k")]
+position = Vector2(56, 72)
+
+[node name="Spikes5" parent="Node2D" instance=ExtResource("6_k8g1k")]
+position = Vector2(56, 104)
+
+[node name="Spikes2" parent="Node2D" instance=ExtResource("6_k8g1k")]
+position = Vector2(88, 88)
+
+[node name="Spikes6" parent="Node2D" instance=ExtResource("6_k8g1k")]
+position = Vector2(120, 88)
+
+[node name="Spikes7" parent="Node2D" instance=ExtResource("6_k8g1k")]
+position = Vector2(104, 72)
+
+[node name="Spikes8" parent="Node2D" instance=ExtResource("6_k8g1k")]
+position = Vector2(104, 104)
+
+[node name="Spikes9" parent="Node2D" instance=ExtResource("6_k8g1k")]
+position = Vector2(88, 40)
+
+[node name="Spikes10" parent="Node2D" instance=ExtResource("6_k8g1k")]
+position = Vector2(120, 40)
+
+[node name="Spikes11" parent="Node2D" instance=ExtResource("6_k8g1k")]
+position = Vector2(104, 24)
+
+[node name="Spikes12" parent="Node2D" instance=ExtResource("6_k8g1k")]
+position = Vector2(104, 56)
