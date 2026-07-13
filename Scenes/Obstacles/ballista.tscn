@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://csfa8mgbehhkf"]
+
+[ext_resource type="Script" uid="uid://dqiww7tgtrwte" path="res://Scripts/Obstacles/Ballista.cs" id="1_prl35"]
+[ext_resource type="Texture2D" uid="uid://ba0m6yil0n1iv" path="res://Assets/Sprites/Obstacles/DJTempBallista.png" id="1_yjkvu"]
+[ext_resource type="PackedScene" uid="uid://d3i0o2fk4gnga" path="res://Scenes/Obstacles/arrow.tscn" id="2_2pvma"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_prl35"]
+size = Vector2(16, 16)
+
+[node name="Ballista" type="StaticBody2D" node_paths=PackedStringArray("ShootPoint", "ShootCooldownTimer")]
+script = ExtResource("1_prl35")
+Facing = 1
+ArrowScene = ExtResource("2_2pvma")
+ShootPoint = NodePath("ShootPoint")
+ShootCooldownTimer = NodePath("ShootCooldownTimer")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_yjkvu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_prl35")
+
+[node name="ShootPoint" type="Marker2D" parent="."]
+position = Vector2(0, 19)
+
+[node name="ShootCooldownTimer" type="Timer" parent="."]
+wait_time = 3.0
+
+[connection signal="timeout" from="ShootCooldownTimer" to="." method="_on_shoot_cooldown_timer_timeout"]

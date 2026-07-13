@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://dawnqrpm1f64h"]
+
+[ext_resource type="Script" uid="uid://bpppsc6iukoi8" path="res://Scripts/Obstacles/Flames.cs" id="1_v3ppi"]
+
+[node name="Flames" type="RayCast2D" node_paths=PackedStringArray("_line2D")]
+target_position = Vector2(256, 0)
+script = ExtResource("1_v3ppi")
+CastSpeed = 200.0
+_line2D = NodePath("Line2D")
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 256, 0)
+width = 5.0
+begin_cap_mode = 2
+end_cap_mode = 2

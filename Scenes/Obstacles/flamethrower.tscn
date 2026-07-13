@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://bwdagfptbp5y"]
+
+[ext_resource type="Script" uid="uid://15hxecmbqww0" path="res://Scripts/Obstacles/Flamethrower.cs" id="1_0kjxi"]
+[ext_resource type="Texture2D" uid="uid://cj1equ6dyyra6" path="res://Assets/Sprites/Obstacles/DJtempFlamethrower.png" id="1_xkxt8"]
+[ext_resource type="PackedScene" uid="uid://dawnqrpm1f64h" path="res://Scenes/Obstacles/flames.tscn" id="3_53yjo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f81q0"]
+size = Vector2(16, 16)
+
+[node name="Flamethrower" type="StaticBody2D" node_paths=PackedStringArray("flames", "ShootTimer", "CooldownTimer")]
+script = ExtResource("1_0kjxi")
+flames = NodePath("Flames")
+ShootTimer = NodePath("ShootTimer")
+CooldownTimer = NodePath("CooldownTimer")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_xkxt8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_f81q0")
+
+[node name="Flames" parent="." instance=ExtResource("3_53yjo")]
+
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="CooldownTimer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]

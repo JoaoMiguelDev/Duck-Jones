@@ -101,6 +101,7 @@ _data = {
 }
 
 [node name="ExplosionRadius" type="Sprite2D" node_paths=PackedStringArray("CircleColor")]
+z_index = 70
 material = SubResource("ShaderMaterial_unlne")
 texture = SubResource("GradientTexture2D_s1lfl")
 script = ExtResource("2_1ujkc")

@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Spikes : Area2D
+public partial class Spikes : Area2D, IActivatable
 {
     [Export] private CollisionShape2D Collision;
     [Export] private Timer RetractTimer;
@@ -9,11 +9,19 @@ public partial class Spikes : Area2D
     [Export] private Sprite2D SpikeSprite;
     [Export] public float RetractTimerValue = 3f; // The time it takes to go back to the ground
     [Export] public float ProtractTimerValue = 2f; // The time it takes to go up 
+    [Export] private bool IsWired = false;
 
     public override void _Ready()
     {
         RetractTimer.WaitTime = RetractTimerValue;
         ProtractTimer.WaitTime = ProtractTimerValue;
+
+        if (IsWired)
+        {
+           Retract();
+           return; 
+        }
+
         Protract();
     }
 
@@ -29,14 +37,17 @@ public partial class Spikes : Area2D
 
     private void Retract()
     {
-        ProtractTimer.Start();
+        if(!IsWired)
+            ProtractTimer.Start();
         Collision.CallDeferred("set_disabled", true);
         SpikeSprite.Frame = 1;
     }
 
     private void Protract()
     {
-        RetractTimer.Start();
+        if (!IsWired)
+            RetractTimer.Start();
+
         Collision.CallDeferred("set_disabled", false);
         SpikeSprite.Frame = 0;
     }
@@ -49,4 +60,10 @@ public partial class Spikes : Area2D
             //body.TakeDamage()
         }
     }
+
+    public void Activate()
+    {
+        Protract();
+    }
+
 }
