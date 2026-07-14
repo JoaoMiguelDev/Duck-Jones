@@ -5,7 +5,10 @@ public partial class HeartCollectable : Interactable
 {
     protected override void GetCollected(Node2D body)
     {
-        return;
+        if(body is DuckJones duckJones)
+        {
+            duckJones.Heal(1);
+        }
     }
 
 }

@@ -1,0 +1,86 @@
+[gd_scene load_steps=8 format=3 uid="uid://det6d0pqtptu0"]
+
+[ext_resource type="Shader" uid="uid://dx7aj7boieymt" path="res://Assets/Shaders/PixelTransition.gdshader" id="1_crfs3"]
+[ext_resource type="Script" uid="uid://lnxvan68y8xg" path="res://Scripts/SceneTransition.cs" id="1_vin40"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vin40"]
+shader = ExtResource("1_crfs3")
+shader_parameter/progress = 1.0
+shader_parameter/resolution = 7.000000285
+shader_parameter/pixel_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_8sxkv"]
+resource_name = "fadein"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_sd3nk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_6nemr"]
+resource_name = "fadeout"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6nemr"]
+_data = {
+&"RESET": SubResource("Animation_sd3nk"),
+&"fadein": SubResource("Animation_8sxkv"),
+&"fadeout": SubResource("Animation_6nemr")
+}
+
+[node name="SceneTransition" type="CanvasLayer" node_paths=PackedStringArray("Animation", "Rectangle")]
+script = ExtResource("1_vin40")
+Animation = NodePath("AnimationPlayer")
+Rectangle = NodePath("ColorRect")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_vin40")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_6nemr")
+}
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

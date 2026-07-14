@@ -16,11 +16,11 @@ public partial class Arrow : CharacterBody2D
 
     	    if (collider is DuckJones duckJones)
     	    {
-    	        // duckJones.TakeDamage();
+    	        duckJones.TakeDamage(1);
 				GD.Print("Hit me");
     	    }
 
-    	    if (collider is DuckJones || collider is TileMapLayer)
+    	    if (collider is DuckJones || collider is TileMapLayer || collider is StaticBody2D || collider is CharacterBody2D)
     	    {
     	        CallDeferred("queue_free");
     	    }

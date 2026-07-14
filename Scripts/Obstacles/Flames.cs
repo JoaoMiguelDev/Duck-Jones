@@ -76,6 +76,10 @@ public partial class Flames : RayCast2D
             laserEndPosition = ToLocal(GetCollisionPoint());
             // _collisionParticles.GlobalRotation = GetCollisionNormal().Angle();
             // _collisionParticles.Position = laserEndPosition;
+
+            if (GetCollider() is DuckJones duckJones)
+                duckJones.TakeDamage(1);
+            
         }
 
         _line2D.Points = new Vector2[]

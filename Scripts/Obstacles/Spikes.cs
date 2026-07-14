@@ -54,10 +54,10 @@ public partial class Spikes : Area2D, IActivatable
 
     public void _on_body_entered(Node2D body)
     {
-        if(body is DuckJones || body is Enemy)
+        if(body is DuckJones duckJones)
         {
             GD.Print("Ouch");
-            //body.TakeDamage()
+            duckJones.TakeDamage(1);
         }
     }
 

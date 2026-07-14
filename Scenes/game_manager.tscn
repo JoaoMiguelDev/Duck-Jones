@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://dctlqhmjl8s15"]
+
+[ext_resource type="Script" uid="uid://ddlvtnswei3i6" path="res://Scripts/GameManager.cs" id="1_oj352"]
+
+[node name="GameManager" type="Node" node_paths=PackedStringArray("DeathTimer")]
+script = ExtResource("1_oj352")
+DeathTimer = NodePath("DeathTimer")
+
+[node name="DeathTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
