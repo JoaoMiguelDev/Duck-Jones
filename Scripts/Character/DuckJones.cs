@@ -9,6 +9,7 @@ public partial class DuckJones : CharacterBody2D
 	[Export] private Timer BombPlaceTimer;
 	[Export] private Timer CanTakeDamageTimer;
 	[Export] private AnimationPlayer HitFlashAnim;
+	[Export] private AnimationPlayer FallAnim;
 	[Export] private ShakyCamera shakyCamera;
 	public const float Speed = 100.0f;
 	private bool CanPlaceBomb = true;
@@ -101,6 +102,12 @@ public partial class DuckJones : CharacterBody2D
     {
 		IsDead = true;
     }
+
+	public void DieByFall()
+	{
+		Health = 0;
+		FallAnim.Play("fall");
+	}
 
 	public void Heal(int Amount)
 	{

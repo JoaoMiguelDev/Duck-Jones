@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bumykpnxt3y4v"]
+[gd_scene load_steps=13 format=3 uid="uid://bumykpnxt3y4v"]
 
 [ext_resource type="Script" uid="uid://cps0vd08dwqf2" path="res://Scripts/Character/DuckJones.cs" id="1_jyhri"]
 [ext_resource type="PackedScene" uid="uid://caexyq805rtjn" path="res://Scenes/Character/bomb.tscn" id="2_h8iga"]
@@ -52,12 +52,73 @@ _data = {
 &"hit": SubResource("Animation_n37it")
 }
 
-[node name="DuckJones" type="CharacterBody2D" node_paths=PackedStringArray("BombPlaceTimer", "CanTakeDamageTimer", "HitFlashAnim")]
+[sub_resource type="Animation" id="Animation_2lyxa"]
+resource_name = "fall"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.2831855]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
+}
+
+[sub_resource type="Animation" id="Animation_u04tq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n37it"]
+_data = {
+&"RESET": SubResource("Animation_u04tq"),
+&"fall": SubResource("Animation_2lyxa")
+}
+
+[node name="DuckJones" type="CharacterBody2D" node_paths=PackedStringArray("BombPlaceTimer", "CanTakeDamageTimer", "HitFlashAnim", "FallAnim")]
 script = ExtResource("1_jyhri")
 BombScene = ExtResource("2_h8iga")
 BombPlaceTimer = NodePath("BombPlaceTimer")
 CanTakeDamageTimer = NodePath("CanTakeDamageTimer")
 HitFlashAnim = NodePath("HitFlashAnim")
+FallAnim = NodePath("FallAnim")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_u04tq")
@@ -76,6 +137,11 @@ one_shot = true
 [node name="HitFlashAnim" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_h83ov")
+}
+
+[node name="FallAnim" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_n37it")
 }
 
 [connection signal="timeout" from="BombPlaceTimer" to="." method="_on_bomb_place_timer_timeout"]

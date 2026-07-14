@@ -6,10 +6,9 @@ public partial class Pitfall : Area2D
     [Export] private CollisionShape2D Collision;
     public void _on_body_entered(Node2D body)
     {
-        if(body is DuckJones || body is Enemy)
+        if(body is DuckJones duckJones)
         {
-            GD.Print("you ded");
-            // body.Kill();
+            duckJones.DieByFall();
         }
     }
 

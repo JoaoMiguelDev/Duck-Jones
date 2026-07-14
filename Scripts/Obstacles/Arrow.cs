@@ -3,7 +3,7 @@ using System;
 
 public partial class Arrow : CharacterBody2D
 {
-	public const float Speed = 20.0f;
+	public const float Speed = 60.0f;
 	public Vector2 Direction;
 	public override void _PhysicsProcess(double delta)
     {
