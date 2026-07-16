@@ -7,6 +7,8 @@
 size = Vector2(16, 16)
 
 [node name="Spikes" type="Area2D" node_paths=PackedStringArray("Collision", "RetractTimer", "ProtractTimer", "SpikeSprite")]
+collision_layer = 16384
+collision_mask = 128
 script = ExtResource("1_c8qqk")
 Collision = NodePath("CollisionShape2D")
 RetractTimer = NodePath("RetractTimer")

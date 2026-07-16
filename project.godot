@@ -61,6 +61,25 @@ placebomb={
 ]
 }
 
+[layer_names]
+
+2d_render/layer_1="Walls"
+2d_render/layer_2="Pillar"
+2d_render/layer_3="Crate"
+2d_render/layer_4="Ballista"
+2d_render/layer_5="Flamethrower"
+2d_render/layer_6="Door"
+2d_render/layer_7="TempleDoor"
+2d_render/layer_8="Player"
+2d_render/layer_9="Armadillo"
+2d_render/layer_10="Arrow"
+2d_render/layer_11="Flame"
+2d_render/layer_12="Bomb"
+2d_render/layer_13="Explosion"
+2d_render/layer_14="Pickup"
+2d_render/layer_15="Trigger"
+2d_render/layer_16="ArmadilloDamage"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

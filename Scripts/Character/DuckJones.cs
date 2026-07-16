@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class DuckJones : CharacterBody2D
+public partial class DuckJones : CharacterBody2D, IDamagable
 {
 	[Signal] public delegate void HealthChangedEventHandler(int current, int max);
 	[Signal] public delegate void DiedEventHandler();

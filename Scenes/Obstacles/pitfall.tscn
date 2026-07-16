@@ -7,6 +7,8 @@
 size = Vector2(12, 12)
 
 [node name="Pitfall" type="Area2D" node_paths=PackedStringArray("Collision")]
+collision_layer = 16384
+collision_mask = 128
 script = ExtResource("1_rv7ts")
 Collision = NodePath("CollisionShape2D")
 

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://d00m6d4f2pcmc"]
+
+[ext_resource type="Script" uid="uid://b81tk8rcvg32b" path="res://Scripts/Interactables/BossRoom.cs" id="1_pttv1"]
+
+[node name="BossRoom" type="Area2D"]
+collision_layer = 65536
+collision_mask = 128
+script = ExtResource("1_pttv1")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

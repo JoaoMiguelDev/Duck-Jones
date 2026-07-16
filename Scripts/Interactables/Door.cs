@@ -12,4 +12,10 @@ public partial class Door : StaticBody2D, IActivatable
 		TempleDoorSprite.Visible = false;
     }
 
+	public void Deactivate()
+	{
+		Collision.CallDeferred("set_disabled", false);
+		TempleDoorSprite.Visible = true;
+	}
+
 }

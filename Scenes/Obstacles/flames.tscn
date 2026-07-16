@@ -4,6 +4,7 @@
 
 [node name="Flames" type="RayCast2D" node_paths=PackedStringArray("_line2D")]
 target_position = Vector2(256, 0)
+collision_mask = 255
 script = ExtResource("1_v3ppi")
 CastSpeed = 200.0
 _line2D = NodePath("Line2D")

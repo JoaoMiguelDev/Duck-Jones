@@ -53,4 +53,8 @@ public partial class Ballista : StaticBody2D, IActivatable
         CallDeferred(nameof(Shoot));
     }
 
+    public void Deactivate()
+    {
+        return;
+    }
 }

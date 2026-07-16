@@ -10,6 +10,8 @@ size = Vector2(32, 12)
 size = Vector2(32, 12)
 
 [node name="TempleDoor" type="StaticBody2D" node_paths=PackedStringArray("Collision", "TempleDoorSprite")]
+collision_layer = 64
+collision_mask = 0
 script = ExtResource("1_056t5")
 Collision = NodePath("CollisionShape2D")
 TempleDoorSprite = NodePath("Sprite2D")
@@ -22,6 +24,8 @@ shape = SubResource("RectangleShape2D_056t5")
 
 [node name="SceneChangeArea" type="Area2D" parent="."]
 position = Vector2(0, -15)
+collision_layer = 16384
+collision_mask = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SceneChangeArea"]
 shape = SubResource("RectangleShape2D_vnphf")

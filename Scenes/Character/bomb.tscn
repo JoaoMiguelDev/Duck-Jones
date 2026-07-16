@@ -50,6 +50,8 @@ shader_parameter/pixel_size = 1.0
 shader_parameter/thickness_px = 2.000000095
 
 [node name="Bomb" type="StaticBody2D" node_paths=PackedStringArray("BombCollision", "ExplosionArea", "ExplosionRadius", "ExplosionTimer")]
+collision_layer = 2048
+collision_mask = 128
 script = ExtResource("1_81qks")
 BombCollision = NodePath("CollisionShape2D")
 ExplosionArea = NodePath("ExplosionArea")
@@ -64,12 +66,16 @@ disabled = true
 texture = ExtResource("1_g8lvg")
 
 [node name="PlayerDetectionArea" type="Area2D" parent="."]
+collision_layer = 2048
+collision_mask = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetectionArea"]
 shape = SubResource("CircleShape2D_64gig")
 debug_color = Color(0.95114046, 2.5990605e-06, 0.5675552, 0.41960785)
 
 [node name="ExplosionArea" type="Area2D" parent="."]
+collision_layer = 4096
+collision_mask = 388
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionArea"]
 shape = SubResource("CircleShape2D_gc2k3")

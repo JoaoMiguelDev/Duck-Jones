@@ -54,9 +54,9 @@ public partial class Bomb : StaticBody2D
 	{
 		foreach(Node body in ExplosionArea.GetOverlappingBodies())
 		{
-			if(body is DuckJones duckJones)
+			if(body is IDamagable damagable)
             {
-                duckJones.TakeDamage(1);
+                damagable.TakeDamage(1);
 			}
 			if(body is Crate crate)
 			{

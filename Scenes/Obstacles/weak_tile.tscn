@@ -8,6 +8,8 @@
 size = Vector2(16, 16)
 
 [node name="WeakTile" type="Area2D" node_paths=PackedStringArray("pitFall", "DestroyTimer", "RegrowTimer", "WeakTileSprite")]
+collision_layer = 16384
+collision_mask = 128
 script = ExtResource("1_d3yov")
 pitFall = NodePath("Pitfall")
 DestroyTimer = NodePath("DestroyTimer")

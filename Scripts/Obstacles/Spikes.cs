@@ -39,6 +39,7 @@ public partial class Spikes : Area2D, IActivatable
     {
         if(!IsWired)
             ProtractTimer.Start();
+            
         Collision.CallDeferred("set_disabled", true);
         SpikeSprite.Frame = 1;
     }
@@ -66,4 +67,8 @@ public partial class Spikes : Area2D, IActivatable
         Protract();
     }
 
+    public void Deactivate()
+    {
+        Retract();
+    }
 }

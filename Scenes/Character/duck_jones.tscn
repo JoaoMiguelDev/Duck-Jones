@@ -14,6 +14,21 @@ shader_parameter/HitFlashOn = false
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h8iga"]
 size = Vector2(5, 5)
 
+[sub_resource type="Animation" id="Animation_v1oxb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/HitFlashOn")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="Animation" id="Animation_n37it"]
 resource_name = "hit"
 length = 1.1
@@ -31,52 +46,10 @@ tracks/0/keys = {
 "values": [true, false, true, false, true, false, true, false, true, false, true, false]
 }
 
-[sub_resource type="Animation" id="Animation_v1oxb"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:material:shader_parameter/HitFlashOn")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_h83ov"]
 _data = {
 &"RESET": SubResource("Animation_v1oxb"),
 &"hit": SubResource("Animation_n37it")
-}
-
-[sub_resource type="Animation" id="Animation_2lyxa"]
-resource_name = "fall"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 6.2831855]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
 }
 
 [sub_resource type="Animation" id="Animation_u04tq"]
@@ -106,6 +79,33 @@ tracks/1/keys = {
 "values": [Vector2(1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_2lyxa"]
+resource_name = "fall"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.2831855]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_n37it"]
 _data = {
 &"RESET": SubResource("Animation_u04tq"),
@@ -113,6 +113,9 @@ _data = {
 }
 
 [node name="DuckJones" type="CharacterBody2D" node_paths=PackedStringArray("BombPlaceTimer", "CanTakeDamageTimer", "HitFlashAnim", "FallAnim")]
+collision_layer = 2176
+collision_mask = 6399
+motion_mode = 1
 script = ExtResource("1_jyhri")
 BombScene = ExtResource("2_h8iga")
 BombPlaceTimer = NodePath("BombPlaceTimer")
@@ -131,7 +134,7 @@ shape = SubResource("RectangleShape2D_h8iga")
 one_shot = true
 
 [node name="CanTakeDamageTimer" type="Timer" parent="."]
-wait_time = 1.0999999999999999
+wait_time = 1.1
 one_shot = true
 
 [node name="HitFlashAnim" type="AnimationPlayer" parent="."]
