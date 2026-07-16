@@ -13,4 +13,6 @@ public abstract partial class Interactable : Area2D
 	}
 
 	protected abstract void GetCollected(Node2D body);
+
+	protected abstract void ShowCollectedText();
 }

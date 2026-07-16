@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://c6mjwam1krhat"]
+[gd_scene load_steps=5 format=3 uid="uid://c6mjwam1krhat"]
 
 [ext_resource type="Texture2D" uid="uid://dlkuj4u8x60pl" path="res://Assets/Sprites/Interactables/DJtempGold.png" id="1_aqypt"]
 [ext_resource type="Script" uid="uid://2hvg4jplhdy6" path="res://Scripts/Interactables/GoldCrumbleCollectable.cs" id="1_w20nt"]
+[ext_resource type="PackedScene" uid="uid://cmfjejpsdfjne" path="res://Scenes/UI/floating_points.tscn" id="2_ybuv5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_w20nt"]
 radius = 8.0
@@ -10,6 +11,7 @@ radius = 8.0
 collision_layer = 8192
 collision_mask = 128
 script = ExtResource("1_w20nt")
+FloatingPointsScene = ExtResource("2_ybuv5")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_aqypt")

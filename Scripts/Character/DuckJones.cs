@@ -4,7 +4,9 @@ using System;
 public partial class DuckJones : CharacterBody2D, IDamagable
 {
 	[Signal] public delegate void HealthChangedEventHandler(int current, int max);
+	[Signal] public delegate void GoldCrumblesChangedEventHandler(int current, int max);
 	[Signal] public delegate void DiedEventHandler();
+	[Signal] public delegate void EggPlacedEventHandler();
 	[Export] private PackedScene BombScene;
 	[Export] private Timer BombPlaceTimer;
 	[Export] private Timer CanTakeDamageTimer;
@@ -33,6 +35,19 @@ public partial class DuckJones : CharacterBody2D, IDamagable
 				Die();
 			} 
     	}
+	}
+
+	//Gold Crumble variables
+	private const int MaxGoldCrumbles = 99;
+	private int _goldCrumbles = 0;
+	public int GoldCrumbles
+	{
+		get => _goldCrumbles;
+		private set
+		{
+			_goldCrumbles = Mathf.Clamp(value, 0, MaxGoldCrumbles);
+			EmitSignal(SignalName.GoldCrumblesChanged, _goldCrumbles, MaxGoldCrumbles);
+		}
 	}
 	public override void _PhysicsProcess(double delta)
 	{
@@ -67,6 +82,7 @@ public partial class DuckJones : CharacterBody2D, IDamagable
 		{
 			CanPlaceBomb = false;
 			BombPlaceTimer.Start();
+			EmitSignal(SignalName.EggPlaced);
 			var bomb = BombScene.Instantiate<Bomb>();
 			GetTree().CurrentScene.AddChild(bomb);
 			bomb.GlobalPosition = GlobalPosition;
@@ -112,6 +128,11 @@ public partial class DuckJones : CharacterBody2D, IDamagable
 	public void Heal(int Amount)
 	{
 		Health += Amount;
+	}
+
+	public void AddGoldCrumbles(int Amount)
+	{
+		GoldCrumbles += Amount;
 	}
 
 }

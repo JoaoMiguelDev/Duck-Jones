@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3 uid="uid://dnhysnfs75f4i"]
+
+[ext_resource type="Shader" uid="uid://c0ibwl8i5pklw" path="res://Assets/Shaders/EggCooldown.gdshader" id="1_8bdqs"]
+[ext_resource type="Texture2D" uid="uid://duax8kwaxjxdg" path="res://Assets/Sprites/UI/HUD/EggHudIcon.png" id="2_jg0c3"]
+[ext_resource type="Script" uid="uid://jtn4d5d0ai33" path="res://Scripts/UI/HUD/EggIcon.cs" id="3_jg0c3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n3b1t"]
+shader = ExtResource("1_8bdqs")
+shader_parameter/progress = 1.0
+shader_parameter/overlay_color = Color(0.92941177, 0.7058824, 0.6313726, 1)
+
+[sub_resource type="Animation" id="Animation_5hahl"]
+resource_name = "cooldown"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_sv3jv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t6xev"]
+_data = {
+&"RESET": SubResource("Animation_sv3jv"),
+&"cooldown": SubResource("Animation_5hahl")
+}
+
+[node name="EggIcon" type="TextureRect" node_paths=PackedStringArray("animation")]
+material = SubResource("ShaderMaterial_n3b1t")
+offset_right = 32.0
+offset_bottom = 32.0
+texture = ExtResource("2_jg0c3")
+script = ExtResource("3_jg0c3")
+animation = NodePath("AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_t6xev")
+}

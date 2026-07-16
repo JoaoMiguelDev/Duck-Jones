@@ -1,0 +1,112 @@
+[gd_scene load_steps=6 format=3 uid="uid://cmfjejpsdfjne"]
+
+[ext_resource type="Script" uid="uid://6a6lky3noixc" path="res://Scripts/UI/FloatingPoints.cs" id="1_v5ruh"]
+[ext_resource type="FontFile" uid="uid://cvrl7vv0qk8rk" path="res://Assets/Fonts/QuinqueFive.ttf" id="2_v5ruh"]
+
+[sub_resource type="Animation" id="Animation_1dmk0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-14, -3.7968178)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Label:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_yotyb"]
+resource_name = "float"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-14, -3.7968178), Vector2(-14, -27.796818)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1.2, 1.2), Vector2(1, 1), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Label:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wlty8"]
+_data = {
+&"RESET": SubResource("Animation_1dmk0"),
+&"float": SubResource("Animation_yotyb")
+}
+
+[node name="FloatingPoints" type="Node2D" node_paths=PackedStringArray("FloatingText", "animation")]
+script = ExtResource("1_v5ruh")
+FloatingText = NodePath("Label")
+animation = NodePath("AnimationPlayer")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -14.0
+offset_top = -3.7968178
+offset_right = 26.0
+offset_bottom = 19.203182
+theme_override_colors/font_color = Color(0.92941177, 0.7058824, 0.6313726, 1)
+theme_override_fonts/font = ExtResource("2_v5ruh")
+theme_override_font_sizes/font_size = 5
+text = "+50"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_wlty8")
+}
+speed_scale = 2.0
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="OnAnimationFinished"]
