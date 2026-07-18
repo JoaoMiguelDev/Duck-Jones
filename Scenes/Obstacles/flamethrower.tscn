@@ -1,11 +1,11 @@
 [gd_scene load_steps=5 format=3 uid="uid://bwdagfptbp5y"]
 
 [ext_resource type="Script" uid="uid://15hxecmbqww0" path="res://Scripts/Obstacles/Flamethrower.cs" id="1_0kjxi"]
-[ext_resource type="Texture2D" uid="uid://cj1equ6dyyra6" path="res://Assets/Sprites/Obstacles/DJtempFlamethrower.png" id="1_xkxt8"]
+[ext_resource type="Texture2D" uid="uid://wvf63i31ejdd" path="res://Assets/Sprites/Tiles/Tileset-Sheet.png" id="2_0kjxi"]
 [ext_resource type="PackedScene" uid="uid://dawnqrpm1f64h" path="res://Scenes/Obstacles/flames.tscn" id="3_53yjo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f81q0"]
-size = Vector2(16, 16)
+size = Vector2(9, 16)
 
 [node name="Flamethrower" type="StaticBody2D" node_paths=PackedStringArray("flames", "ShootTimer", "CooldownTimer")]
 collision_layer = 16
@@ -16,9 +16,12 @@ ShootTimer = NodePath("ShootTimer")
 CooldownTimer = NodePath("CooldownTimer")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_xkxt8")
+texture = ExtResource("2_0kjxi")
+region_enabled = true
+region_rect = Rect2(96, 128, 16, 16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3.5, 0)
 shape = SubResource("RectangleShape2D_f81q0")
 
 [node name="Flames" parent="." instance=ExtResource("3_53yjo")]

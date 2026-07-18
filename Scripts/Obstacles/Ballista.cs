@@ -15,10 +15,23 @@ public partial class Ballista : StaticBody2D, IActivatable
 	[Export] private PackedScene ArrowScene;
 	[Export] private Marker2D ShootPoint;
 	[Export] private Timer ShootCooldownTimer;
+	[Export] private AnimatedSprite2D Sprite;
 	[Export] private bool IsWired = false;
 
     public override void _Ready()
     {
+		float AngleCorrection = Facing switch
+		{
+   		 	FacingDirection.Up => -180,
+    		FacingDirection.Right => -90,
+    		FacingDirection.Down => 0,
+    		FacingDirection.Left => 90,
+    		_ => 0
+		};
+
+		Sprite.RotationDegrees += AngleCorrection;
+
+		Sprite.Play(Facing.ToString());
         if(IsWired)
 			return;
 		ShootCooldownTimer.Start();

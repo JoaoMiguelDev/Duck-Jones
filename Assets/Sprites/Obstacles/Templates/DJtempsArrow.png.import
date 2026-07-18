@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2sedg7eohi20"
-path="res://.godot/imported/DJtempKey.png-2f6ce7adab7277b9457b7ad5f85b5c89.ctex"
+uid="uid://ct73ampkwicjy"
+path="res://.godot/imported/DJtempsArrow.png-a5a71746b7389fd1ea910a70e4a7bf59.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Interactables/DJtempKey.png"
-dest_files=["res://.godot/imported/DJtempKey.png-2f6ce7adab7277b9457b7ad5f85b5c89.ctex"]
+source_file="res://Assets/Sprites/Obstacles/Templates/DJtempsArrow.png"
+dest_files=["res://.godot/imported/DJtempsArrow.png-a5a71746b7389fd1ea910a70e4a7bf59.ctex"]
 
 [params]
 

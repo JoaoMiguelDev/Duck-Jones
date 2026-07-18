@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bcdewg4gn3i5x"
-path="res://.godot/imported/PillarTemp.png-a16f31181fc96aae6e830f5b3f3ee7bf.ctex"
+uid="uid://dlkuj4u8x60pl"
+path="res://.godot/imported/DJtempGold.png-43b62795bbe64190e480b32ad445a755.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Obstacles/PillarTemp.png"
-dest_files=["res://.godot/imported/PillarTemp.png-a16f31181fc96aae6e830f5b3f3ee7bf.ctex"]
+source_file="res://Assets/Sprites/Interactables/Templates/DJtempGold.png"
+dest_files=["res://.godot/imported/DJtempGold.png-43b62795bbe64190e480b32ad445a755.ctex"]
 
 [params]
 

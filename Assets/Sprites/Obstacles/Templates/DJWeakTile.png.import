@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dlkuj4u8x60pl"
-path="res://.godot/imported/DJtempGold.png-bf86acfad435d0b851eeba0a3520e5fa.ctex"
+uid="uid://dkgpncmnba1d1"
+path="res://.godot/imported/DJWeakTile.png-8d79a0a22428fde8caa45c127a3d4987.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Interactables/DJtempGold.png"
-dest_files=["res://.godot/imported/DJtempGold.png-bf86acfad435d0b851eeba0a3520e5fa.ctex"]
+source_file="res://Assets/Sprites/Obstacles/Templates/DJWeakTile.png"
+dest_files=["res://.godot/imported/DJWeakTile.png-8d79a0a22428fde8caa45c127a3d4987.ctex"]
 
 [params]
 

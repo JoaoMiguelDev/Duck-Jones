@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8gikt8ksfapt"
-path="res://.godot/imported/DJLockTemp.png-618e9177941180a77d398b96700cf338.ctex"
+uid="uid://ba0m6yil0n1iv"
+path="res://.godot/imported/DJTempBallista.png-a869b56ed57cbd3a4007d8738b690dc9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Interactables/DJLockTemp.png"
-dest_files=["res://.godot/imported/DJLockTemp.png-618e9177941180a77d398b96700cf338.ctex"]
+source_file="res://Assets/Sprites/Obstacles/Templates/DJTempBallista.png"
+dest_files=["res://.godot/imported/DJTempBallista.png-a869b56ed57cbd3a4007d8738b690dc9.ctex"]
 
 [params]
 

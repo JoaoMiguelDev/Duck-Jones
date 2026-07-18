@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bhshebjuyxopm"
-path="res://.godot/imported/DJtempsGate.png-f547ed0c5c7161d80c99b87af918175b.ctex"
+uid="uid://lb3wx8san8l3"
+path="res://.godot/imported/Spikes-Sheet.png-b17f2ba451e1acc3955a86af29ecc8b7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Interactables/DJtempsGate.png"
-dest_files=["res://.godot/imported/DJtempsGate.png-f547ed0c5c7161d80c99b87af918175b.ctex"]
+source_file="res://Assets/Sprites/Obstacles/Spikes-Sheet.png"
+dest_files=["res://.godot/imported/Spikes-Sheet.png-b17f2ba451e1acc3955a86af29ecc8b7.ctex"]
 
 [params]
 

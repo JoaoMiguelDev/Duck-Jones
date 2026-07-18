@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5rxbdraaivto"
-path="res://.godot/imported/DJCrateTemp.png-339a6318d7a6d73c98bf85ae49fa6788.ctex"
+uid="uid://dbnuv2sjr6ewk"
+path="res://.godot/imported/DJtempPressurePlate.png-19169ede6d82710214dbf2303699cb82.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Obstacles/DJCrateTemp.png"
-dest_files=["res://.godot/imported/DJCrateTemp.png-339a6318d7a6d73c98bf85ae49fa6788.ctex"]
+source_file="res://Assets/Sprites/Interactables/Templates/DJtempPressurePlate.png"
+dest_files=["res://.godot/imported/DJtempPressurePlate.png-19169ede6d82710214dbf2303699cb82.ctex"]
 
 [params]
 

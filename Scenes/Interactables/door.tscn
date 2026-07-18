@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://ctql1bd4m0sml"]
 
 [ext_resource type="Script" uid="uid://c8cgkuav18sc0" path="res://Scripts/Interactables/Door.cs" id="1_olwfu"]
-[ext_resource type="Texture2D" uid="uid://bhshebjuyxopm" path="res://Assets/Sprites/Interactables/DJtempsGate.png" id="2_8l2uc"]
+[ext_resource type="Texture2D" uid="uid://bhshebjuyxopm" path="res://Assets/Sprites/Interactables/Templates/DJtempsGate.png" id="2_8l2uc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j2o8d"]
 size = Vector2(32, 12)

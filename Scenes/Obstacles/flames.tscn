@@ -1,16 +1,73 @@
-[gd_scene load_steps=2 format=3 uid="uid://dawnqrpm1f64h"]
+[gd_scene load_steps=9 format=3 uid="uid://dawnqrpm1f64h"]
 
 [ext_resource type="Script" uid="uid://bpppsc6iukoi8" path="res://Scripts/Obstacles/Flames.cs" id="1_v3ppi"]
 
-[node name="Flames" type="RayCast2D" node_paths=PackedStringArray("_line2D")]
+[sub_resource type="Gradient" id="Gradient_v3ppi"]
+offsets = PackedFloat32Array(0, 0.5068493, 1)
+colors = PackedColorArray(0.4627451, 0.26666668, 0.38431373, 1, 0.6627451, 0.40784314, 0.40784314, 1, 0.92941177, 0.7058824, 0.6313726, 1)
+
+[sub_resource type="Gradient" id="Gradient_4wptx"]
+offsets = PackedFloat32Array(0.5188679, 1)
+colors = PackedColorArray(0.4627451, 0.26666668, 0.38431373, 1, 0.6627451, 0.40784314, 0.40784314, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_t81vm"]
+gradient = SubResource("Gradient_4wptx")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_i75qm"]
+particle_flag_disable_z = true
+initial_velocity_min = 20.0
+initial_velocity_max = 40.0
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 4.0
+color_ramp = SubResource("GradientTexture1D_t81vm")
+
+[sub_resource type="Gradient" id="Gradient_ltk2e"]
+offsets = PackedFloat32Array(0.35849056, 1)
+colors = PackedColorArray(0.92941177, 0.7058824, 0.6313726, 1, 0.6627451, 0.40784314, 0.40784314, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_lx8xh"]
+gradient = SubResource("Gradient_ltk2e")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_s5qc2"]
+lifetime_randomness = 0.5
+particle_flag_disable_z = true
+direction = Vector3(-1, 0, 0)
+spread = 90.0
+initial_velocity_min = 30.0
+initial_velocity_max = 50.0
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 4.0
+color_ramp = SubResource("GradientTexture1D_lx8xh")
+
+[node name="Flames" type="RayCast2D" node_paths=PackedStringArray("_line2D", "_castingParticles", "_collisionParticles")]
 target_position = Vector2(256, 0)
 collision_mask = 255
 script = ExtResource("1_v3ppi")
 CastSpeed = 200.0
+StartDistance = 3.0
 _line2D = NodePath("Line2D")
+_castingParticles = NodePath("CastingParticles")
+_collisionParticles = NodePath("CollisionParticles")
 
 [node name="Line2D" type="Line2D" parent="."]
 points = PackedVector2Array(0, 0, 256, 0)
 width = 5.0
+default_color = Color(0.1334233, 0.26866722, 0.22195703, 1)
+gradient = SubResource("Gradient_v3ppi")
 begin_cap_mode = 2
 end_cap_mode = 2
+
+[node name="CastingParticles" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 30
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_i75qm")
+
+[node name="CollisionParticles" type="GPUParticles2D" parent="."]
+position = Vector2(256, 0)
+emitting = false
+amount = 30
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_s5qc2")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dk26ws8nciq5j"]
 
-[ext_resource type="Texture2D" uid="uid://2sedg7eohi20" path="res://Assets/Sprites/Interactables/DJtempKey.png" id="1_31d7s"]
+[ext_resource type="Texture2D" uid="uid://2sedg7eohi20" path="res://Assets/Sprites/Interactables/Templates/DJtempKey.png" id="1_31d7s"]
 [ext_resource type="Script" uid="uid://g2474hew0t3v" path="res://Scripts/Interactables/TempleKey.cs" id="1_0646v"]
 [ext_resource type="PackedScene" uid="uid://cmfjejpsdfjne" path="res://Scenes/UI/floating_points.tscn" id="2_qqoy6"]
 

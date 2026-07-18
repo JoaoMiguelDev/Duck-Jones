@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://ec25ycxu883b" path="res://Scripts/Obstacles/Pitfall.cs" id="1_rv7ts"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rv7ts"]
-size = Vector2(12, 12)
+size = Vector2(7, 7)
 
 [node name="Pitfall" type="Area2D" node_paths=PackedStringArray("Collision")]
 collision_layer = 16384

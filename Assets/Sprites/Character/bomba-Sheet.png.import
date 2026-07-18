@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cj1equ6dyyra6"
-path="res://.godot/imported/DJtempFlamethrower.png-5f1319870ab6ecb1b3073406d3eeb124.ctex"
+uid="uid://g8cru1k7whrj"
+path="res://.godot/imported/bomba-Sheet.png-829743c826cafde8bdd62cc2806feef3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Obstacles/DJtempFlamethrower.png"
-dest_files=["res://.godot/imported/DJtempFlamethrower.png-5f1319870ab6ecb1b3073406d3eeb124.ctex"]
+source_file="res://Assets/Sprites/Character/bomba-Sheet.png"
+dest_files=["res://.godot/imported/bomba-Sheet.png-829743c826cafde8bdd62cc2806feef3.ctex"]
 
 [params]
 

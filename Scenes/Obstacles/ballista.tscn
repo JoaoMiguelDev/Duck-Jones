@@ -1,13 +1,64 @@
-[gd_scene load_steps=5 format=3 uid="uid://csfa8mgbehhkf"]
+[gd_scene load_steps=10 format=3 uid="uid://csfa8mgbehhkf"]
 
 [ext_resource type="Script" uid="uid://dqiww7tgtrwte" path="res://Scripts/Obstacles/Ballista.cs" id="1_prl35"]
-[ext_resource type="Texture2D" uid="uid://ba0m6yil0n1iv" path="res://Assets/Sprites/Obstacles/DJTempBallista.png" id="1_yjkvu"]
 [ext_resource type="PackedScene" uid="uid://d3i0o2fk4gnga" path="res://Scenes/Obstacles/arrow.tscn" id="2_2pvma"]
+[ext_resource type="Texture2D" uid="uid://wvf63i31ejdd" path="res://Assets/Sprites/Tiles/Tileset-Sheet.png" id="3_2pvma"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6d8eh"]
+atlas = ExtResource("3_2pvma")
+region = Rect2(128, 112, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cd7vn"]
+atlas = ExtResource("3_2pvma")
+region = Rect2(96, 128, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m2uuw"]
+atlas = ExtResource("3_2pvma")
+region = Rect2(144, 128, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gka5j"]
+atlas = ExtResource("3_2pvma")
+region = Rect2(128, 128, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wdu7o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6d8eh")
+}],
+"loop": true,
+"name": &"Down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cd7vn")
+}],
+"loop": true,
+"name": &"Left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m2uuw")
+}],
+"loop": true,
+"name": &"Right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gka5j")
+}],
+"loop": false,
+"name": &"Up",
+"speed": 0.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_prl35"]
 size = Vector2(16, 16)
 
-[node name="Ballista" type="StaticBody2D" node_paths=PackedStringArray("ShootPoint", "ShootCooldownTimer")]
+[node name="Ballista" type="StaticBody2D" node_paths=PackedStringArray("ShootPoint", "ShootCooldownTimer", "Sprite")]
 collision_layer = 8
 collision_mask = 0
 script = ExtResource("1_prl35")
@@ -15,9 +66,11 @@ Facing = 1
 ArrowScene = ExtResource("2_2pvma")
 ShootPoint = NodePath("ShootPoint")
 ShootCooldownTimer = NodePath("ShootCooldownTimer")
+Sprite = NodePath("AnimatedSprite2D")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_yjkvu")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_wdu7o")
+animation = &"Down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_prl35")

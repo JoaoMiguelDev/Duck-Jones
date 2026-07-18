@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ba0m6yil0n1iv"
-path="res://.godot/imported/DJTempBallista.png-a53c80d86d18af6ae1011617006a1075.ctex"
+uid="uid://c8uf0kpyvdang"
+path="res://.godot/imported/WeakTile-Sheet.png-90db4e82b4c7b37fa134bb9f6e4e4f58.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Obstacles/DJTempBallista.png"
-dest_files=["res://.godot/imported/DJTempBallista.png-a53c80d86d18af6ae1011617006a1075.ctex"]
+source_file="res://Assets/Sprites/Obstacles/WeakTile-Sheet.png"
+dest_files=["res://.godot/imported/WeakTile-Sheet.png-90db4e82b4c7b37fa134bb9f6e4e4f58.ctex"]
 
 [params]
 

@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="DuckJones"
+run/main_scene="uid://blijsu4eom88y"
 config/features=PackedStringArray("4.5", "C#", "Forward Plus")
 config/icon="uid://c1d4ewmvhcvpf"
 
@@ -83,3 +84,4 @@ placebomb={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+environment/defaults/default_clear_color=Color(0.17254902, 0.12941177, 0.21568628, 1)
