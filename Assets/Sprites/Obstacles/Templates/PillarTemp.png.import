@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bt3rvvudnmu8y"
-path="res://.godot/imported/DJtempHeart.png-daba6b40efa75fa24f69bcd0bab90673.ctex"
+uid="uid://bcdewg4gn3i5x"
+path="res://.godot/imported/PillarTemp.png-79f42e4be9fb903a556f0afe3fd02202.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Interactables/DJtempHeart.png"
-dest_files=["res://.godot/imported/DJtempHeart.png-daba6b40efa75fa24f69bcd0bab90673.ctex"]
+source_file="res://Assets/Sprites/Obstacles/Templates/PillarTemp.png"
+dest_files=["res://.godot/imported/PillarTemp.png-79f42e4be9fb903a556f0afe3fd02202.ctex"]
 
 [params]
 

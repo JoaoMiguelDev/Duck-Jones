@@ -7,6 +7,7 @@ public partial class WeakTile : Area2D
     [Export] private Timer DestroyTimer;
     [Export] private Timer RegrowTimer;
     [Export] private Sprite2D WeakTileSprite;
+    [Export] private AnimatedSprite2D WeakTileAnimation;
     private bool Desintegrating = false;
 
     public override void _Ready()
@@ -33,6 +34,7 @@ public partial class WeakTile : Area2D
     public void _on_regrow_timer_timeout()
     {
         WeakTileSprite.Visible = true;
+        WeakTileAnimation.Play("regrow");
         pitFall.DisableCollision();
     }
 
@@ -40,6 +42,7 @@ public partial class WeakTile : Area2D
     {
         if (!Desintegrating)
         {
+            WeakTileAnimation.Play("break");
             Desintegrating = true;
             DestroyTimer.Start();
         }

@@ -30,8 +30,8 @@ public partial class Flames : RayCast2D
 
     private Tween _tween;
     [Export] private Line2D _line2D;
-    // private GpuParticles2D _castingParticles;
-    // private GpuParticles2D _collisionParticles;
+    [Export] private GpuParticles2D _castingParticles;
+    [Export] private GpuParticles2D _collisionParticles;
     // private GpuParticles2D _beamParticles;
 
     private float _lineWidth;
@@ -53,7 +53,7 @@ public partial class Flames : RayCast2D
             Vector2.Zero
         };
         _line2D.Visible = false;
-        // _castingParticles.Position = _line2D.Points[0];
+        _castingParticles.Position = _line2D.Points[0];
 
         if (!Engine.IsEditorHint())
         {
@@ -75,7 +75,7 @@ public partial class Flames : RayCast2D
         {
             laserEndPosition = ToLocal(GetCollisionPoint());
             // _collisionParticles.GlobalRotation = GetCollisionNormal().Angle();
-            // _collisionParticles.Position = laserEndPosition;
+            _collisionParticles.Position = laserEndPosition;
 
             if (GetCollider() is DuckJones duckJones)
                 duckJones.TakeDamage(1);
@@ -101,7 +101,7 @@ public partial class Flames : RayCast2D
         //     );
         // }
 
-        // _collisionParticles.Emitting = IsColliding();
+        _collisionParticles.Emitting = IsColliding();
     }
 
     private void SetIsCasting(bool newValue)
@@ -116,20 +116,20 @@ public partial class Flames : RayCast2D
         //     return;
 
         // _beamParticles.Emitting = _isCasting;
-        // _castingParticles.Emitting = _isCasting;
+        _castingParticles.Emitting = _isCasting;
 
         if (_isCasting)
         {
             Vector2 laserStart = Vector2.Right * StartDistance;
             _line2D.Points = new Vector2[] { laserStart, laserStart };
-            // _castingParticles.Position = laserStart;
+            _castingParticles.Position = laserStart;
 
             Appear();
         }
         else
         {
             TargetPosition = Vector2.Zero;
-            // _collisionParticles.Emitting = false;
+            _collisionParticles.Emitting = false;
             Disappear();
         }
     }

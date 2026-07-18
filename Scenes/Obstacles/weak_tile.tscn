@@ -1,13 +1,85 @@
-[gd_scene load_steps=5 format=3 uid="uid://i70ul41uq71y"]
+[gd_scene load_steps=16 format=3 uid="uid://i70ul41uq71y"]
 
 [ext_resource type="Script" uid="uid://x6w1p8trsco8" path="res://Scripts/Obstacles/WeakTile.cs" id="1_d3yov"]
 [ext_resource type="PackedScene" uid="uid://gtk4fvcvhd0d" path="res://Scenes/Obstacles/pitfall.tscn" id="1_ys2id"]
-[ext_resource type="Texture2D" uid="uid://dkgpncmnba1d1" path="res://Assets/Sprites/Obstacles/DJWeakTile.png" id="2_d3yov"]
+[ext_resource type="Texture2D" uid="uid://wvf63i31ejdd" path="res://Assets/Sprites/Tiles/Tileset-Sheet.png" id="3_si1gi"]
+[ext_resource type="Texture2D" uid="uid://c8uf0kpyvdang" path="res://Assets/Sprites/Obstacles/WeakTile-Sheet.png" id="5_eato4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_si1gi"]
 size = Vector2(16, 16)
 
-[node name="WeakTile" type="Area2D" node_paths=PackedStringArray("pitFall", "DestroyTimer", "RegrowTimer", "WeakTileSprite")]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wvxhy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5c33g"]
+atlas = ExtResource("5_eato4")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p80oa"]
+atlas = ExtResource("5_eato4")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r7rod"]
+atlas = ExtResource("5_eato4")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tr7l8"]
+atlas = ExtResource("5_eato4")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_si1gi"]
+atlas = ExtResource("5_eato4")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7nfnp"]
+atlas = ExtResource("5_eato4")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eato4"]
+atlas = ExtResource("5_eato4")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wvxhy"]
+atlas = ExtResource("5_eato4")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c1egt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5c33g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p80oa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r7rod")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tr7l8")
+}],
+"loop": false,
+"name": &"break",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_si1gi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7nfnp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eato4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wvxhy")
+}],
+"loop": false,
+"name": &"regrow",
+"speed": 10.0
+}]
+
+[node name="WeakTile" type="Area2D" node_paths=PackedStringArray("pitFall", "DestroyTimer", "RegrowTimer", "WeakTileSprite", "WeakTileAnimation")]
 collision_layer = 16384
 collision_mask = 128
 script = ExtResource("1_d3yov")
@@ -15,6 +87,7 @@ pitFall = NodePath("Pitfall")
 DestroyTimer = NodePath("DestroyTimer")
 RegrowTimer = NodePath("RegrowTimer")
 WeakTileSprite = NodePath("Sprite2D")
+WeakTileAnimation = NodePath("Sprite2D/AnimatedSprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_si1gi")
@@ -22,7 +95,14 @@ shape = SubResource("RectangleShape2D_si1gi")
 [node name="Pitfall" parent="." instance=ExtResource("1_ys2id")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_d3yov")
+material = SubResource("ShaderMaterial_wvxhy")
+texture = ExtResource("3_si1gi")
+region_enabled = true
+region_rect = Rect2(40, 64, 16, 16)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Sprite2D"]
+sprite_frames = SubResource("SpriteFrames_c1egt")
+animation = &"break"
 
 [node name="DestroyTimer" type="Timer" parent="."]
 wait_time = 2.0

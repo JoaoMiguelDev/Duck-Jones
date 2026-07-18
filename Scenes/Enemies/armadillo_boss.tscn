@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://c0ro87cr51d75"]
 
 [ext_resource type="Script" uid="uid://b325p6pini1mt" path="res://Scripts/Enemies/ArmadilloBoss.cs" id="1_fagqx"]
-[ext_resource type="Texture2D" uid="uid://0a8dg3446lo0" path="res://Assets/Sprites/Character/DuckJonesTemp (1).png" id="2_x5x0q"]
+[ext_resource type="Texture2D" uid="uid://0a8dg3446lo0" path="res://Assets/Sprites/Character/Templates/DuckJonesTemp (1).png" id="2_x5x0q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fagqx"]
 

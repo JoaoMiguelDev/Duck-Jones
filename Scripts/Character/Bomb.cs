@@ -7,7 +7,9 @@ public partial class Bomb : StaticBody2D
 	[Export] private CollisionShape2D BombCollision;
 	[Export] private Area2D ExplosionArea;
 	[Export] private ExplosionRadius ExplosionRadius;
+	[Export] private AnimationPlayer Animation;
 	[Export] private Timer ExplosionTimer;
+	[Export] private PackedScene ExplosionParticlesScene;
 
 	public override void _Ready()
 	{
@@ -25,12 +27,18 @@ public partial class Bomb : StaticBody2D
 
 	public void _on_explosion_timer_timeout()
 	{
+		var explosionParticles = ExplosionParticlesScene.Instantiate<GpuParticles2D>();
+		GetTree().CurrentScene.AddChild(explosionParticles);
+		explosionParticles.GlobalPosition = GlobalPosition;	
+		explosionParticles.Emitting = true;
+			
 		CheckBodiesInExplosionArea();
 		CallDeferred("queue_free");
 	}
 
 	private void StartBomb()
 	{
+		Animation.Play("blink");
 		ExplosionTimer.Start();
 	}
 

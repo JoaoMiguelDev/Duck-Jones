@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2sedg7eohi20"
-path="res://.godot/imported/DJtempKey.png-2f6ce7adab7277b9457b7ad5f85b5c89.ctex"
+uid="uid://0a8dg3446lo0"
+path="res://.godot/imported/DuckJonesTemp (1).png-ca84e9d72a4fd6875fa2ef471678cba8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Interactables/DJtempKey.png"
-dest_files=["res://.godot/imported/DJtempKey.png-2f6ce7adab7277b9457b7ad5f85b5c89.ctex"]
+source_file="res://Assets/Sprites/Character/Templates/DuckJonesTemp (1).png"
+dest_files=["res://.godot/imported/DuckJonesTemp (1).png-ca84e9d72a4fd6875fa2ef471678cba8.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dlkuj4u8x60pl"
-path="res://.godot/imported/DJtempGold.png-bf86acfad435d0b851eeba0a3520e5fa.ctex"
+uid="uid://2sedg7eohi20"
+path="res://.godot/imported/DJtempKey.png-cb1503b93ad43c41dc5dc252aa0fdfe9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Interactables/DJtempGold.png"
-dest_files=["res://.godot/imported/DJtempGold.png-bf86acfad435d0b851eeba0a3520e5fa.ctex"]
+source_file="res://Assets/Sprites/Interactables/Templates/DJtempKey.png"
+dest_files=["res://.godot/imported/DJtempKey.png-cb1503b93ad43c41dc5dc252aa0fdfe9.ctex"]
 
 [params]
 

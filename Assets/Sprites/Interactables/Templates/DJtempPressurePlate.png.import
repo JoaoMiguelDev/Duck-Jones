@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dkgpncmnba1d1"
-path="res://.godot/imported/DJWeakTile.png-22b888d5b69567e760c380b18566beb0.ctex"
+uid="uid://dbnuv2sjr6ewk"
+path="res://.godot/imported/DJtempPressurePlate.png-19169ede6d82710214dbf2303699cb82.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Obstacles/DJWeakTile.png"
-dest_files=["res://.godot/imported/DJWeakTile.png-22b888d5b69567e760c380b18566beb0.ctex"]
+source_file="res://Assets/Sprites/Interactables/Templates/DJtempPressurePlate.png"
+dest_files=["res://.godot/imported/DJtempPressurePlate.png-19169ede6d82710214dbf2303699cb82.ctex"]
 
 [params]
 

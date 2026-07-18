@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0a8dg3446lo0"
-path="res://.godot/imported/DuckJonesTemp (1).png-c40069b584f3eb0e8a559292d17f27f2.ctex"
+uid="uid://dkgpncmnba1d1"
+path="res://.godot/imported/DJWeakTile.png-8d79a0a22428fde8caa45c127a3d4987.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Character/DuckJonesTemp (1).png"
-dest_files=["res://.godot/imported/DuckJonesTemp (1).png-c40069b584f3eb0e8a559292d17f27f2.ctex"]
+source_file="res://Assets/Sprites/Obstacles/Templates/DJWeakTile.png"
+dest_files=["res://.godot/imported/DJWeakTile.png-8d79a0a22428fde8caa45c127a3d4987.ctex"]
 
 [params]
 

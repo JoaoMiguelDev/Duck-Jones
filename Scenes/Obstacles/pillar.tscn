@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://lkc3ycdhniua"]
 
 [ext_resource type="Script" uid="uid://bydokwgdff6fu" path="res://Scripts/Obstacles/Pillar.cs" id="1_040cr"]
-[ext_resource type="Texture2D" uid="uid://bcdewg4gn3i5x" path="res://Assets/Sprites/Obstacles/PillarTemp.png" id="1_vd8k5"]
+[ext_resource type="Texture2D" uid="uid://bcdewg4gn3i5x" path="res://Assets/Sprites/Obstacles/Templates/PillarTemp.png" id="1_vd8k5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_040cr"]
 size = Vector2(16, 16)

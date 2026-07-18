@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ct73ampkwicjy"
-path="res://.godot/imported/DJtempsArrow.png-3e90d35edc6f285341d366fb0078bbb6.ctex"
+uid="uid://bkr2o54aoh5kc"
+path="res://.godot/imported/DJtempSpike.png-27933e8c95da4850dffc38724454ff6f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Obstacles/DJtempsArrow.png"
-dest_files=["res://.godot/imported/DJtempsArrow.png-3e90d35edc6f285341d366fb0078bbb6.ctex"]
+source_file="res://Assets/Sprites/Obstacles/Templates/DJtempSpike.png"
+dest_files=["res://.godot/imported/DJtempSpike.png-27933e8c95da4850dffc38724454ff6f.ctex"]
 
 [params]
 

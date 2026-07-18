@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c8gikt8ksfapt"
-path="res://.godot/imported/DJLockTemp.png-618e9177941180a77d398b96700cf338.ctex"
+path="res://.godot/imported/DJLockTemp.png-e326cc85b270aca2ba7aa1f73247f6f2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Interactables/DJLockTemp.png"
-dest_files=["res://.godot/imported/DJLockTemp.png-618e9177941180a77d398b96700cf338.ctex"]
+source_file="res://Assets/Sprites/Interactables/Templates/DJLockTemp.png"
+dest_files=["res://.godot/imported/DJLockTemp.png-e326cc85b270aca2ba7aa1f73247f6f2.ctex"]
 
 [params]
 

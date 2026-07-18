@@ -1,9 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://bhhlcwamlfxs6"]
+[gd_scene load_steps=8 format=3 uid="uid://bhhlcwamlfxs6"]
 
 [ext_resource type="Script" uid="uid://bjsob8ctgdjg3" path="res://Scripts/Obstacles/Crate.cs" id="1_fdjq4"]
-[ext_resource type="Texture2D" uid="uid://c5rxbdraaivto" path="res://Assets/Sprites/Obstacles/DJCrateTemp.png" id="1_ofjot"]
 [ext_resource type="PackedScene" uid="uid://cgwf222oymf4b" path="res://Scenes/Interactables/heart_collectable.tscn" id="2_nmjpt"]
 [ext_resource type="PackedScene" uid="uid://c6mjwam1krhat" path="res://Scenes/Interactables/gold_crumble_collectable.tscn" id="3_mycd0"]
+[ext_resource type="Shader" uid="uid://dqd13xkxdm6d6" path="res://Assets/Shaders/Outliner.gdshader" id="4_mycd0"]
+[ext_resource type="Texture2D" uid="uid://vqyv1kilyd4f" path="res://Assets/Sprites/Obstacles/Crate.png" id="4_nmjpt"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6t6y4"]
+shader = ExtResource("4_mycd0")
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/outline_size = 1.0000000475
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fdjq4"]
 size = Vector2(14, 14)
@@ -16,7 +22,9 @@ HeartScene = ExtResource("2_nmjpt")
 GoldCrumbleScene = ExtResource("3_mycd0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_ofjot")
+material = SubResource("ShaderMaterial_6t6y4")
+texture = ExtResource("4_nmjpt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("RectangleShape2D_fdjq4")

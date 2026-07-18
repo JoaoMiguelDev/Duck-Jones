@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cps0vd08dwqf2" path="res://Scripts/Character/DuckJones.cs" id="1_jyhri"]
 [ext_resource type="PackedScene" uid="uid://caexyq805rtjn" path="res://Scenes/Character/bomb.tscn" id="2_h8iga"]
-[ext_resource type="Texture2D" uid="uid://0a8dg3446lo0" path="res://Assets/Sprites/Character/DuckJonesTemp (1).png" id="2_hqmb3"]
+[ext_resource type="Texture2D" uid="uid://0a8dg3446lo0" path="res://Assets/Sprites/Character/Templates/DuckJonesTemp (1).png" id="2_hqmb3"]
 [ext_resource type="Shader" uid="uid://dy2v8thauocad" path="res://Assets/Shaders/HitFlash.gdshader" id="3_2lyxa"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_u04tq"]
@@ -12,7 +12,7 @@ shader_parameter/HitFlashColor = Color(1, 1, 1, 1)
 shader_parameter/HitFlashOn = false
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h8iga"]
-size = Vector2(5, 5)
+size = Vector2(10, 10)
 
 [sub_resource type="Animation" id="Animation_v1oxb"]
 length = 0.001
