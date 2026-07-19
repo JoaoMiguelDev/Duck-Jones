@@ -4,6 +4,7 @@ using System;
 public partial class GameManager : Node
 {
 	[Export] private DuckJones duckJones;
+	[Export] private ArmadilloBoss armadilloBoss;
 	[Export] private Timer DeathTimer;
 	[Export] private TempleKey templeKey;
     [Export] private Hud hud;
@@ -17,6 +18,13 @@ public partial class GameManager : Node
 		
 		if(templeKey != null)
 			templeKey.TempleKeyPicked += OnTempleKeyPicked;
+		
+		if(armadilloBoss != null)
+		{
+			armadilloBoss.BossHealthChanged += OnBossHealthChanged;
+			armadilloBoss.BattleStarted += OnBattleStarted;
+			armadilloBoss.BossDied += OnBossDied;
+		}
     }
 
 	private void OnPlayerHealthChanged(int current, int max)
@@ -48,6 +56,22 @@ public partial class GameManager : Node
 	public void _on_death_timer_timeout()
 	{
 		LevelManager.Instance.ReloadCurrent();
+	}
+
+	public void OnBossHealthChanged(int current, int max)
+	{
+		hud.UpdateBossHealthBar(current);
+	}
+
+	public void OnBattleStarted()
+	{
+		hud.ShowBossHealthBar();
+		// hud.UpdateBossHealthBar(armadilloBoss.Health);
+	}
+
+	public void OnBossDied()
+	{
+		hud.HideBossHealthBar();
 	}
 
 }

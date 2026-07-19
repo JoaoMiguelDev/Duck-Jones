@@ -11,8 +11,11 @@ public partial class ArmadilloBoss : CharacterBody2D, IDamagable
     }
 
 	[Signal] public delegate void BossHealthChangedEventHandler(int current, int max);
+    [Signal] public delegate void BattleStartedEventHandler();
 	[Signal] public delegate void BossDiedEventHandler();
 	[Export] private Timer StateTimer;
+    [Export] private ShakyCamera shakyCamera;
+    [Export] private AnimationPlayer HitFlashAnim;
     [Export] public float RollSpeed = 150f;
 	[Export] public float BounceSpeedIncrease = 25f; 
 	[Export] public float MaxRollSpeed = 400f;
@@ -90,10 +93,12 @@ public partial class ArmadilloBoss : CharacterBody2D, IDamagable
         if (currentSpeed >= PillarStunVelocityThreshold)
         {
             EnterState(BossState.Stunned);
+            shakyCamera.ScreenShake(10, 0.7f);
         }
         else
         {
             RollDirection = -RollDirection;
+            shakyCamera.ScreenShake(2, 0.2f);
         }
     }
 
@@ -103,6 +108,8 @@ public partial class ArmadilloBoss : CharacterBody2D, IDamagable
     	RollDirection = ApplyRandomDeviation(RollDirection, BounceAngleVariance);
 
     	CurrentSpeed = Mathf.Min(CurrentSpeed + BounceSpeedIncrease, MaxRollSpeed);
+
+        shakyCamera.ScreenShake(2, 0.2f);
 	}
 
     private void EnterState(BossState newState)
@@ -164,11 +171,14 @@ public partial class ArmadilloBoss : CharacterBody2D, IDamagable
 
         CanTakeDamageThisStun = false;
         Health -= Amount;
+        HitFlashAnim.Play("hitflash");
+        shakyCamera.ScreenShake(4f, 0.5f);
     }
 
     public void StartBoss()
     {
         EnterState(BossState.Idle);
+        EmitSignal(SignalName.BattleStarted);
     }
 
 	public void Die()
