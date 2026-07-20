@@ -66,12 +66,14 @@ public partial class GameManager : Node
 	public void OnBattleStarted()
 	{
 		hud.ShowBossHealthBar();
+		AudioManager.Instance.PlayArmadilloBossSong();
 		// hud.UpdateBossHealthBar(armadilloBoss.Health);
 	}
 
 	public void OnBossDied()
 	{
 		hud.HideBossHealthBar();
+		AudioManager.Instance.StopAll();
 	}
 
 }

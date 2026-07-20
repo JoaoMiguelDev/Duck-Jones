@@ -9,7 +9,9 @@ public partial class Bomb : StaticBody2D
 	[Export] private ExplosionRadius ExplosionRadius;
 	[Export] private AnimationPlayer Animation;
 	[Export] private Timer ExplosionTimer;
+	[Export] private Timer BombClickTimer;
 	[Export] private PackedScene ExplosionParticlesScene;
+	[Export] private AudioStreamPlayer BombClickSfx;
 
 	public override void _Ready()
 	{
@@ -31,6 +33,9 @@ public partial class Bomb : StaticBody2D
 		GetTree().CurrentScene.AddChild(explosionParticles);
 		explosionParticles.GlobalPosition = GlobalPosition;	
 		explosionParticles.Emitting = true;
+
+		explosionParticles.Finished += explosionParticles.QueueFree;
+		AudioManager.Instance.ActivateSfxExplosion();  
 			
 		CheckBodiesInExplosionArea();
 		CallDeferred("queue_free");
@@ -40,6 +45,7 @@ public partial class Bomb : StaticBody2D
 	{
 		Animation.Play("blink");
 		ExplosionTimer.Start();
+		BombClickTimer.Start();
 	}
 
 	public void _on_explosion_area_body_entered(Node2D body)
@@ -71,6 +77,10 @@ public partial class Bomb : StaticBody2D
 				crate.Destroy();
 			}
 		}
+	}
+	private void _on_bomb_click_timer_timeout()
+	{
+		BombClickSfx.Play();
 	}
 
 

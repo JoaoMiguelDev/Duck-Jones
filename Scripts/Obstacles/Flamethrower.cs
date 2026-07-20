@@ -7,6 +7,7 @@ public partial class Flamethrower : StaticBody2D
 	[Export] private Flames flames;
 	[Export] private Timer ShootTimer;
 	[Export] private Timer CooldownTimer;
+	[Export] private AudioStreamPlayer2D SfxFire;
 
     public override void _Ready()
     {
@@ -27,6 +28,7 @@ public partial class Flamethrower : StaticBody2D
 	{
 		flames.IsCasting = true;
 		ShootTimer.Start();
+		SfxFire.Play();
 	}
 
 	private void StopShooting()

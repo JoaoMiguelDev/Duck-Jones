@@ -7,6 +7,7 @@ public partial class Spikes : Area2D, IActivatable
     [Export] private Timer RetractTimer;
     [Export] private Timer ProtractTimer;
     [Export] private AnimatedSprite2D SpikeSprite;
+    [Export] private AudioStreamPlayer2D SpikeSfx;
     [Export] public float RetractTimerValue = 3f; // The time it takes to go back to the ground
     [Export] public float ProtractTimerValue = 2f; // The time it takes to go up 
     [Export] private bool IsWired = false;
@@ -42,6 +43,7 @@ public partial class Spikes : Area2D, IActivatable
             
         Collision.CallDeferred("set_disabled", true);
         SpikeSprite.PlayBackwards("protract");
+        SpikeSfx.Play();
     }
 
     private void Protract()
@@ -51,6 +53,7 @@ public partial class Spikes : Area2D, IActivatable
 
         Collision.CallDeferred("set_disabled", false);
         SpikeSprite.Play("protract");
+        SpikeSfx.Play();
     }
 
     public void _on_body_entered(Node2D body)

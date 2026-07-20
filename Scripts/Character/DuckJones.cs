@@ -11,14 +11,20 @@ public partial class DuckJones : CharacterBody2D, IDamagable
 	[Export] private PackedScene BombScene;
 	[Export] private Timer BombPlaceTimer;
 	[Export] private Timer CanTakeDamageTimer;
+	[Export] private Timer WalkSfxTimer;
 	[Export] private AnimationPlayer HitFlashAnim;
 	[Export] private AnimationPlayer FallAnim;
 	[Export] private ShakyCamera shakyCamera;
+	[Export] private AudioStreamPlayer SfxHurt;
+	[Export] private AudioStreamPlayer SfxPlaceBomb;
+	[Export] private AudioStreamPlayer SfxDie;
+	[Export] private AudioStreamPlayer SfxWalk;
 	public const float Speed = 100.0f;
 	private bool CanPlaceBomb = true;
 	public bool HasKey { get; set; } = false;
 	private bool IsDead = false;
 	private bool CanTakeDamage = true;
+	private bool CanEmitWalkSound = true;
 	private string CurrentDirection = "down";
 
 	//Health variables
@@ -62,6 +68,14 @@ public partial class DuckJones : CharacterBody2D, IDamagable
 		if (direction != Vector2.Zero)
 		{
 			velocity = direction.Normalized() * Speed;
+
+			if (!SfxWalk.Playing && CanEmitWalkSound)
+			{
+				WalkSfxTimer.Start();
+				CanEmitWalkSound = false;
+				SfxWalk.Play();
+			}
+				
 		}
 		else
 		{
@@ -76,6 +90,8 @@ public partial class DuckJones : CharacterBody2D, IDamagable
 		Velocity = velocity;
 		MoveAndSlide();
 		UpdateAnimation(direction);
+
+
 	}
 
 	//Bomb related methods
@@ -85,6 +101,7 @@ public partial class DuckJones : CharacterBody2D, IDamagable
 		{
 			CanPlaceBomb = false;
 			BombPlaceTimer.Start();
+			SfxPlaceBomb.Play();
 			EmitSignal(SignalName.EggPlaced);
 			var bomb = BombScene.Instantiate<Bomb>();
 			GetTree().CurrentScene.AddChild(bomb);
@@ -111,6 +128,7 @@ public partial class DuckJones : CharacterBody2D, IDamagable
 			return;
 
 		shakyCamera.ScreenShake(4f, 0.5f);
+		SfxHurt.Play();
 		CanTakeDamage = false;
 		HitFlashAnim.Play("hit");
 		CanTakeDamageTimer.Start();
@@ -123,6 +141,7 @@ public partial class DuckJones : CharacterBody2D, IDamagable
 			return;
 		IsDead = true;
 		AnimatedSprite.Play(GetAnimationName("die", CurrentDirection));
+		SfxDie.Play();
     }
 
 	public void DieByFall()
@@ -192,6 +211,11 @@ public partial class DuckJones : CharacterBody2D, IDamagable
 		}
 
 		return $"{state}_{direction}";
+	}
+
+	public void _on_walk_sfx_timer_timeout()
+	{
+		CanEmitWalkSound = true;
 	}	
 
 }

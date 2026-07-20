@@ -19,6 +19,7 @@ config/icon="uid://c1d4ewmvhcvpf"
 
 LevelManager="*res://Scripts/LevelManager.cs"
 SceneTransition="*res://Scenes/scene_transition.tscn"
+AudioManager="*res://Scenes/audio_manager.tscn"
 
 [display]
 
