@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://di6ocock5dt0y"]
+[gd_scene load_steps=10 format=3 uid="uid://di6ocock5dt0y"]
 
 [ext_resource type="Script" uid="uid://l3v4emnwigg6" path="res://Scripts/UI/HUD/Hud.cs" id="1_1gwbq"]
 [ext_resource type="Texture2D" uid="uid://bi8ad1rsj5u4a" path="res://Assets/Sprites/UI/HUD/DJHud (1).png" id="1_ij32q"]
@@ -8,8 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://cfu7q2c42jwq1" path="res://Scenes/UI/HUD/feather_hud.tscn" id="6_uwk01"]
 [ext_resource type="FontFile" uid="uid://cvrl7vv0qk8rk" path="res://Assets/Fonts/QuinqueFive.ttf" id="6_wjbp5"]
 [ext_resource type="Texture2D" uid="uid://hxtm4uupw44m" path="res://Assets/Sprites/UI/HUD/KeyHudIcon.png" id="8_uwk01"]
+[ext_resource type="Texture2D" uid="uid://b7m257r3alcjj" path="res://Assets/Sprites/UI/HUD/BossHealthBar.png" id="9_lyil3"]
 
-[node name="Hud" type="Control" node_paths=PackedStringArray("Feathers", "eggIcon", "KeyIcon", "Points")]
+[node name="Hud" type="Control" node_paths=PackedStringArray("Feathers", "eggIcon", "KeyIcon", "Points", "BossHealthBar")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,8 +20,9 @@ grow_vertical = 2
 script = ExtResource("1_1gwbq")
 Feathers = [NodePath("FeathersMarginContainer/HBoxContainer/Feather1/FeatherHud"), NodePath("FeathersMarginContainer/HBoxContainer/Feather2/FeatherHud"), NodePath("FeathersMarginContainer/HBoxContainer/Feather3/FeatherHud")]
 eggIcon = NodePath("EggMarginContainer/EggIcon")
-KeyIcon = NodePath("MarginContainer/KeyIcon")
+KeyIcon = NodePath("KeyMarginContainer/KeyIcon")
 Points = NodePath("PointsMarginContainer/Points")
+BossHealthBar = NodePath("BossHealthMarginContainer/Control/Sprite2D")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
@@ -131,7 +133,7 @@ theme_override_fonts/font = ExtResource("6_wjbp5")
 theme_override_font_sizes/font_size = 15
 text = "17C"
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="KeyMarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -142,7 +144,29 @@ grow_horizontal = 0
 theme_override_constants/margin_top = 7
 theme_override_constants/margin_right = 8
 
-[node name="KeyIcon" type="TextureRect" parent="MarginContainer"]
+[node name="KeyIcon" type="TextureRect" parent="KeyMarginContainer"]
 visible = false
 layout_mode = 2
 texture = ExtResource("8_uwk01")
+
+[node name="BossHealthMarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 20
+
+[node name="Control" type="Control" parent="BossHealthMarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="BossHealthMarginContainer/Control"]
+visible = false
+texture = ExtResource("9_lyil3")
+hframes = 4
+frame = 3

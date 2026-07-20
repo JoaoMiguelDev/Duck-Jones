@@ -1,8 +1,46 @@
-[gd_scene load_steps=5 format=3 uid="uid://cgwf222oymf4b"]
+[gd_scene load_steps=11 format=3 uid="uid://cgwf222oymf4b"]
 
 [ext_resource type="Script" uid="uid://1g042mq8i1kj" path="res://Scripts/Interactables/HeartCollectable.cs" id="1_3osgs"]
-[ext_resource type="Texture2D" uid="uid://bt3rvvudnmu8y" path="res://Assets/Sprites/Interactables/Templates/DJtempHeart.png" id="1_j7hd1"]
 [ext_resource type="PackedScene" uid="uid://cmfjejpsdfjne" path="res://Scenes/UI/floating_points.tscn" id="2_20sa3"]
+[ext_resource type="Texture2D" uid="uid://wve4kvij6flo" path="res://Assets/Sprites/Interactables/feather-Sheet.png" id="3_20sa3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bkkhk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jpbmn"]
+atlas = ExtResource("3_20sa3")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bkkhk"]
+atlas = ExtResource("3_20sa3")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5i817"]
+atlas = ExtResource("3_20sa3")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5v2rs"]
+atlas = ExtResource("3_20sa3")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6thht"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jpbmn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bkkhk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5i817")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5v2rs")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3osgs"]
 radius = 8.0
@@ -13,8 +51,11 @@ collision_mask = 128
 script = ExtResource("1_3osgs")
 FloatingPointsScene = ExtResource("2_20sa3")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_j7hd1")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_bkkhk")
+sprite_frames = SubResource("SpriteFrames_6thht")
+autoplay = "default"
+frame_progress = 0.8873259
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_3osgs")

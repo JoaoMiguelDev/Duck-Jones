@@ -7,6 +7,7 @@ public partial class Hud : Control
 	[Export] private EggIcon eggIcon;
 	[Export] private TextureRect KeyIcon;
 	[Export] private Label Points;
+	[Export] private Sprite2D BossHealthBar;
 
     public override void _Ready()
     {
@@ -36,5 +37,20 @@ public partial class Hud : Control
 	public void ShowKeyIcon()
 	{
 		KeyIcon.Visible = true;
+	}
+
+	public void ShowBossHealthBar()
+	{
+		BossHealthBar.Visible = true;
+	}
+
+	public void HideBossHealthBar()
+	{
+		BossHealthBar.Visible = false;
+	}
+
+	public void UpdateBossHealthBar(int value)
+	{
+		BossHealthBar.Frame = value;
 	}
 }

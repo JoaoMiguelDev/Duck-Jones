@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cvli8qq1h4qol"
-path="res://.godot/imported/DJ_damage-Sheet.png-b70ffe09d116b969f4bcbedda1516c51.ctex"
+uid="uid://b7m257r3alcjj"
+path="res://.godot/imported/BossHealthBar.png-bc120ca507f1850ef0bb90688a2aa2c0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Character/DJ_damage-Sheet.png"
-dest_files=["res://.godot/imported/DJ_damage-Sheet.png-b70ffe09d116b969f4bcbedda1516c51.ctex"]
+source_file="res://Assets/Sprites/UI/HUD/BossHealthBar.png"
+dest_files=["res://.godot/imported/BossHealthBar.png-bc120ca507f1850ef0bb90688a2aa2c0.ctex"]
 
 [params]
 

@@ -7,6 +7,7 @@ public partial class DuckJones : CharacterBody2D, IDamagable
 	[Signal] public delegate void GoldCrumblesChangedEventHandler(int current, int max);
 	[Signal] public delegate void DiedEventHandler();
 	[Signal] public delegate void EggPlacedEventHandler();
+	[Export] private AnimatedSprite2D AnimatedSprite;
 	[Export] private PackedScene BombScene;
 	[Export] private Timer BombPlaceTimer;
 	[Export] private Timer CanTakeDamageTimer;
@@ -18,6 +19,7 @@ public partial class DuckJones : CharacterBody2D, IDamagable
 	public bool HasKey { get; set; } = false;
 	private bool IsDead = false;
 	private bool CanTakeDamage = true;
+	private string CurrentDirection = "down";
 
 	//Health variables
 	private const int MaxHealth = 3;
@@ -73,6 +75,7 @@ public partial class DuckJones : CharacterBody2D, IDamagable
 
 		Velocity = velocity;
 		MoveAndSlide();
+		UpdateAnimation(direction);
 	}
 
 	//Bomb related methods
@@ -116,13 +119,17 @@ public partial class DuckJones : CharacterBody2D, IDamagable
 
 	public void Die()
     {
+		if (IsDead)
+			return;
 		IsDead = true;
+		AnimatedSprite.Play(GetAnimationName("die", CurrentDirection));
     }
 
 	public void DieByFall()
 	{
 		Health = 0;
 		FallAnim.Play("fall");
+		AnimatedSprite.Play("die_fall");
 	}
 
 	public void Heal(int Amount)
@@ -134,5 +141,57 @@ public partial class DuckJones : CharacterBody2D, IDamagable
 	{
 		GoldCrumbles += Amount;
 	}
+
+	private void UpdateAnimation(Vector2 inputVector)
+	{
+		string newAnimation;
+
+		if (inputVector == Vector2.Zero)
+		{
+			newAnimation = GetAnimationName("idle", CurrentDirection);
+		}
+		else
+		{
+			CurrentDirection = GetDirectionFromVector(inputVector);
+			newAnimation = GetAnimationName("walk", CurrentDirection);
+		}
+
+		if (AnimatedSprite.Animation != newAnimation)
+		{
+			AnimatedSprite.Play(newAnimation);
+		}
+
+		
+		if (CurrentDirection == "right")
+		{
+			AnimatedSprite.FlipH = true;
+		}
+		else if (CurrentDirection == "left")
+		{
+			AnimatedSprite.FlipH = false;
+		}
+	}
+
+	private string GetDirectionFromVector(Vector2 vector)
+	{
+		if (Mathf.Abs(vector.X) > Mathf.Abs(vector.Y))
+		{
+			return vector.X > 0 ? "right" : "left";
+		}
+		else
+		{
+			return vector.Y > 0 ? "down" : "up";
+		}
+	}
+
+	private string GetAnimationName(string state, string direction)
+	{
+		if (direction == "left" || direction == "right")
+		{
+			return $"{state}_side";
+		}
+
+		return $"{state}_{direction}";
+	}	
 
 }
