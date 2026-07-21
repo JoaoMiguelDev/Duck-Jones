@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://bbp3ny02icpx1"]
+[gd_scene load_steps=11 format=3 uid="uid://bbp3ny02icpx1"]
 
 [ext_resource type="Script" uid="uid://bmdipl7lvu44s" path="res://Scripts/Obstacles/Spikes.cs" id="1_c8qqk"]
 [ext_resource type="Texture2D" uid="uid://lb3wx8san8l3" path="res://Assets/Sprites/Obstacles/Spikes-Sheet.png" id="3_42v1o"]
+[ext_resource type="AudioStream" uid="uid://cllyfp4y271ky" path="res://Assets/Audios/Sfx/SpikeSfx.wav" id="3_rkkd8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rkkd8"]
 atlas = ExtResource("3_42v1o")
@@ -49,7 +50,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rkkd8"]
 size = Vector2(16, 16)
 
-[node name="Spikes" type="Area2D" node_paths=PackedStringArray("Collision", "RetractTimer", "ProtractTimer", "SpikeSprite")]
+[node name="Spikes" type="Area2D" node_paths=PackedStringArray("Collision", "RetractTimer", "ProtractTimer", "SpikeSprite", "SpikeSfx")]
 collision_layer = 16384
 collision_mask = 128
 script = ExtResource("1_c8qqk")
@@ -57,6 +58,7 @@ Collision = NodePath("CollisionShape2D")
 RetractTimer = NodePath("RetractTimer")
 ProtractTimer = NodePath("ProtractTimer")
 SpikeSprite = NodePath("AnimatedSprite2D")
+SpikeSfx = NodePath("SpikeSfx")
 ProtractTimerValue = 1.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -72,6 +74,12 @@ one_shot = true
 
 [node name="ProtractTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="SpikeSfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_rkkd8")
+volume_db = 10.0
+pitch_scale = 0.54
+max_distance = 50.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="RetractTimer" to="." method="_on_retract_timer_timeout"]

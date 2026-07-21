@@ -8,6 +8,7 @@ public partial class WeakTile : Area2D
     [Export] private Timer RegrowTimer;
     [Export] private Sprite2D WeakTileSprite;
     [Export] private AnimatedSprite2D WeakTileAnimation;
+    [Export] private AudioStreamPlayer2D SfxDesintegrate;
     private bool Desintegrating = false;
 
     public override void _Ready()
@@ -27,6 +28,7 @@ public partial class WeakTile : Area2D
     {
         Desintegrating = false;
         WeakTileSprite.Visible = false;
+        SfxDesintegrate.Play();
         pitFall.ActivateCollision();
         RegrowTimer.Start();
     }

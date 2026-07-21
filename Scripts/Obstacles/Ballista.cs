@@ -16,6 +16,7 @@ public partial class Ballista : StaticBody2D, IActivatable
 	[Export] private Marker2D ShootPoint;
 	[Export] private Timer ShootCooldownTimer;
 	[Export] private AnimatedSprite2D Sprite;
+	[Export] private AudioStreamPlayer2D SfxShoot;
 	[Export] private bool IsWired = false;
 
     public override void _Ready()
@@ -58,6 +59,7 @@ public partial class Ballista : StaticBody2D, IActivatable
 		arrow.Rotate(Rotation);
 		arrow.GlobalPosition = ShootPoint.GlobalPosition;
 		arrow.Direction = dir;
+		SfxShoot.Play();
 		
 	}
 

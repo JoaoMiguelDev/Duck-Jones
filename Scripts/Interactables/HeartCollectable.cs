@@ -11,6 +11,7 @@ public partial class HeartCollectable : Interactable
         {
             ShowCollectedText();
             duckJones.Heal(HealAmount);
+            AudioManager.Instance.ActivateSfxPickup();
         }
     }
 

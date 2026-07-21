@@ -1,8 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://c0ro87cr51d75"]
+[gd_scene load_steps=12 format=3 uid="uid://c0ro87cr51d75"]
 
 [ext_resource type="Script" uid="uid://b325p6pini1mt" path="res://Scripts/Enemies/ArmadilloBoss.cs" id="1_fagqx"]
 [ext_resource type="Shader" uid="uid://cfwb7w2gyteko" path="res://Assets/Shaders/OutlineHitFlash.gdshader" id="2_ootyq"]
 [ext_resource type="Texture2D" uid="uid://0a8dg3446lo0" path="res://Assets/Sprites/Character/Templates/DuckJonesTemp (1).png" id="2_x5x0q"]
+[ext_resource type="AudioStream" uid="uid://pnqdlna5yx48" path="res://Assets/Audios/Sfx/bounce.wav" id="4_wjgjo"]
+[ext_resource type="AudioStream" uid="uid://dnwg507pqlvi5" path="res://Assets/Audios/Sfx/hitpilar2.wav" id="5_egpdm"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wjgjo"]
 shader = ExtResource("2_ootyq")
@@ -14,6 +16,21 @@ shader_parameter/hit_flash_on = false
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fagqx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x5x0q"]
+
+[sub_resource type="Animation" id="Animation_q636p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/hit_flash_on")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_egpdm"]
 resource_name = "hitflash"
@@ -31,34 +48,21 @@ tracks/0/keys = {
 "values": [true, false]
 }
 
-[sub_resource type="Animation" id="Animation_q636p"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:material:shader_parameter/hit_flash_on")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7yrxc"]
 _data = {
 &"RESET": SubResource("Animation_q636p"),
 &"hitflash": SubResource("Animation_egpdm")
 }
 
-[node name="ArmadilloBoss" type="CharacterBody2D" node_paths=PackedStringArray("StateTimer", "HitFlashAnim")]
+[node name="ArmadilloBoss" type="CharacterBody2D" node_paths=PackedStringArray("StateTimer", "HitFlashAnim", "SfxBounce", "SfxHitPillar")]
 collision_layer = 256
 collision_mask = 127
 motion_mode = 1
 script = ExtResource("1_fagqx")
 StateTimer = NodePath("StateTimer")
 HitFlashAnim = NodePath("AnimationPlayer")
+SfxBounce = NodePath("BounceSfx")
+SfxHitPillar = NodePath("HitPillarSfx")
 MaxRollSpeed = 500.0
 BounceAngleVariance = 30.0
 
@@ -86,6 +90,16 @@ debug_color = Color(0.95974773, 0, 0.52259445, 0.41960785)
 libraries = {
 &"": SubResource("AnimationLibrary_7yrxc")
 }
+
+[node name="BounceSfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_wjgjo")
+max_distance = 400.0
+
+[node name="HitPillarSfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_egpdm")
+volume_db = 5.0
+pitch_scale = 1.2
+max_distance = 1000.0
 
 [connection signal="timeout" from="StateTimer" to="." method="_on_state_timer_timeout"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

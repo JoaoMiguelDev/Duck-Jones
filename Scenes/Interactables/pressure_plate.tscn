@@ -1,20 +1,28 @@
-[gd_scene load_steps=4 format=3 uid="uid://cmne73uwx50lx"]
+[gd_scene load_steps=5 format=3 uid="uid://cmne73uwx50lx"]
 
 [ext_resource type="Script" uid="uid://djrlcib33sdrc" path="res://Scripts/Interactables/PressurePlate.cs" id="1_3pnss"]
 [ext_resource type="Texture2D" uid="uid://dbnuv2sjr6ewk" path="res://Assets/Sprites/Interactables/Templates/DJtempPressurePlate.png" id="2_804tt"]
+[ext_resource type="AudioStream" uid="uid://dhwi343cour0l" path="res://Assets/Audios/Sfx/PressurePlateSfx.wav" id="3_804tt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bhnmj"]
 size = Vector2(12, 12)
 
-[node name="PressurePlate" type="Area2D"]
+[node name="PressurePlate" type="Area2D" node_paths=PackedStringArray("SfxPress")]
 collision_layer = 16384
 collision_mask = 128
 script = ExtResource("1_3pnss")
+SfxPress = NodePath("PressSfx")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_804tt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_bhnmj")
+
+[node name="PressSfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_804tt")
+volume_db = 9.0
+pitch_scale = 0.3
+max_distance = 50.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

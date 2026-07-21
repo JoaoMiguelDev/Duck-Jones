@@ -14,6 +14,7 @@ public partial class LevelManager : Node
     public override void _Ready()
     {
        Instance = this;
+	   CallDeferred(nameof(ApplySceneSong));
     }
 
 	public void ChangeLevel()
@@ -26,16 +27,28 @@ public partial class LevelManager : Node
 		}
 
 		SceneTransition.Instance.Transitioning(Levels[CurrentLevel]);
+		ApplySceneSong();
+
 	}
 
 	public void ReloadCurrent()
 	{
 		SceneTransition.Instance.Transitioning(Levels[CurrentLevel]);
+		if(CurrentLevel == 2)
+			AudioManager.Instance.StopAll();
 	}
 
 	public void ResetLevelIndex()
 	{
 		CurrentLevel = 0;
+	}
+
+	private void ApplySceneSong()
+	{
+		if(CurrentLevel == 0)
+			AudioManager.Instance.PlayTempleGroove();
+		else if(CurrentLevel == 2)
+			AudioManager.Instance.StopAll();
 	}
 
 }

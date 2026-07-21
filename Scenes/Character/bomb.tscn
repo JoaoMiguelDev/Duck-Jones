@@ -1,10 +1,11 @@
-[gd_scene load_steps=20 format=3 uid="uid://caexyq805rtjn"]
+[gd_scene load_steps=21 format=3 uid="uid://caexyq805rtjn"]
 
 [ext_resource type="Script" uid="uid://ddymkkaumtb2" path="res://Scripts/Character/Bomb.cs" id="1_81qks"]
 [ext_resource type="PackedScene" uid="uid://dytietnlkulns" path="res://Scenes/Character/explosion_particles.tscn" id="2_2ked8"]
 [ext_resource type="Shader" uid="uid://cfwb7w2gyteko" path="res://Assets/Shaders/OutlineHitFlash.gdshader" id="2_gc2k3"]
 [ext_resource type="Texture2D" uid="uid://g8cru1k7whrj" path="res://Assets/Sprites/Character/bomba-Sheet.png" id="3_2ked8"]
 [ext_resource type="PackedScene" uid="uid://bf4q4xab8wuvr" path="res://Scenes/Character/explosion_radius.tscn" id="3_64gig"]
+[ext_resource type="AudioStream" uid="uid://cp02d45fbocdy" path="res://Assets/Audios/Sfx/BombClick.wav" id="6_lepdm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_81qks"]
 radius = 7.0
@@ -108,6 +109,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BombClickTimer:autostart")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_0s6hq"]
 resource_name = "blink"
@@ -125,6 +138,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [true, false]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BombClickTimer:autostart")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_04hk6"]
 _data = {
@@ -132,7 +157,7 @@ _data = {
 &"blink": SubResource("Animation_0s6hq")
 }
 
-[node name="Bomb" type="StaticBody2D" node_paths=PackedStringArray("BombCollision", "ExplosionArea", "ExplosionRadius", "Animation", "ExplosionTimer")]
+[node name="Bomb" type="StaticBody2D" node_paths=PackedStringArray("BombCollision", "ExplosionArea", "ExplosionRadius", "Animation", "ExplosionTimer", "BombClickTimer", "BombClickSfx")]
 collision_layer = 2048
 collision_mask = 128
 script = ExtResource("1_81qks")
@@ -141,7 +166,9 @@ ExplosionArea = NodePath("ExplosionArea")
 ExplosionRadius = NodePath("ExplosionRadius")
 Animation = NodePath("AnimationPlayer")
 ExplosionTimer = NodePath("ExplosionTimer")
+BombClickTimer = NodePath("BombClickTimer")
 ExplosionParticlesScene = ExtResource("2_2ked8")
+BombClickSfx = NodePath("BombClick")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_81qks")
@@ -181,7 +208,14 @@ libraries = {
 &"": SubResource("AnimationLibrary_04hk6")
 }
 
+[node name="BombClick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_lepdm")
+
+[node name="BombClickTimer" type="Timer" parent="."]
+wait_time = 0.5
+
 [connection signal="body_exited" from="PlayerDetectionArea" to="." method="_on_player_detection_area_body_exited"]
 [connection signal="body_entered" from="ExplosionArea" to="." method="_on_explosion_area_body_entered"]
 [connection signal="body_exited" from="ExplosionArea" to="." method="_on_explosion_area_body_exited"]
 [connection signal="timeout" from="ExplosionTimer" to="." method="_on_explosion_timer_timeout"]
+[connection signal="timeout" from="BombClickTimer" to="." method="_on_bomb_click_timer_timeout"]

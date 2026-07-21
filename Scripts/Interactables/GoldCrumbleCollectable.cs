@@ -11,6 +11,7 @@ public partial class GoldCrumbleCollectable : Interactable
         {
             ShowCollectedText();
             duckJones.AddGoldCrumbles(Value);
+            AudioManager.Instance.ActivateSfxPickup();
         }
     }
 

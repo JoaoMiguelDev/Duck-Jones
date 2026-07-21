@@ -12,6 +12,7 @@ public partial class TempleKey : Interactable
             EmitSignal(SignalName.TempleKeyPicked);
             ShowCollectedText();
             duckJones.HasKey = true;
+            AudioManager.Instance.ActivateSfxPickup();
         }
     }
 

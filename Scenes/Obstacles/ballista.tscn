@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://csfa8mgbehhkf"]
+[gd_scene load_steps=11 format=3 uid="uid://csfa8mgbehhkf"]
 
 [ext_resource type="Script" uid="uid://dqiww7tgtrwte" path="res://Scripts/Obstacles/Ballista.cs" id="1_prl35"]
 [ext_resource type="PackedScene" uid="uid://d3i0o2fk4gnga" path="res://Scenes/Obstacles/arrow.tscn" id="2_2pvma"]
 [ext_resource type="Texture2D" uid="uid://wvf63i31ejdd" path="res://Assets/Sprites/Tiles/Tileset-Sheet.png" id="3_2pvma"]
+[ext_resource type="AudioStream" uid="uid://mvmigh0bofm7" path="res://Assets/Audios/Sfx/ArrowShootSfx.wav" id="4_6d8eh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6d8eh"]
 atlas = ExtResource("3_2pvma")
@@ -58,7 +59,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_prl35"]
 size = Vector2(16, 16)
 
-[node name="Ballista" type="StaticBody2D" node_paths=PackedStringArray("ShootPoint", "ShootCooldownTimer", "Sprite")]
+[node name="Ballista" type="StaticBody2D" node_paths=PackedStringArray("ShootPoint", "ShootCooldownTimer", "Sprite", "SfxShoot")]
 collision_layer = 8
 collision_mask = 0
 script = ExtResource("1_prl35")
@@ -67,6 +68,7 @@ ArrowScene = ExtResource("2_2pvma")
 ShootPoint = NodePath("ShootPoint")
 ShootCooldownTimer = NodePath("ShootCooldownTimer")
 Sprite = NodePath("AnimatedSprite2D")
+SfxShoot = NodePath("ArrowShootSfx")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_wdu7o")
@@ -80,5 +82,9 @@ position = Vector2(0, 19)
 
 [node name="ShootCooldownTimer" type="Timer" parent="."]
 wait_time = 3.0
+
+[node name="ArrowShootSfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_6d8eh")
+max_distance = 200.0
 
 [connection signal="timeout" from="ShootCooldownTimer" to="." method="_on_shoot_cooldown_timer_timeout"]

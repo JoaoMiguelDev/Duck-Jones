@@ -16,6 +16,8 @@ public partial class ArmadilloBoss : CharacterBody2D, IDamagable
 	[Export] private Timer StateTimer;
     [Export] private ShakyCamera shakyCamera;
     [Export] private AnimationPlayer HitFlashAnim;
+    [Export] private AudioStreamPlayer2D SfxBounce;
+    [Export] private AudioStreamPlayer2D SfxHitPillar;
     [Export] public float RollSpeed = 150f;
 	[Export] public float BounceSpeedIncrease = 25f; 
 	[Export] public float MaxRollSpeed = 400f;
@@ -94,11 +96,13 @@ public partial class ArmadilloBoss : CharacterBody2D, IDamagable
         {
             EnterState(BossState.Stunned);
             shakyCamera.ScreenShake(10, 0.7f);
+            SfxHitPillar.Play();
         }
         else
         {
             RollDirection = -RollDirection;
             shakyCamera.ScreenShake(2, 0.2f);
+            SfxBounce.Play();
         }
     }
 
@@ -110,6 +114,8 @@ public partial class ArmadilloBoss : CharacterBody2D, IDamagable
     	CurrentSpeed = Mathf.Min(CurrentSpeed + BounceSpeedIncrease, MaxRollSpeed);
 
         shakyCamera.ScreenShake(2, 0.2f);
+
+        SfxBounce.Play();
 	}
 
     private void EnterState(BossState newState)

@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://d4mrkgwlha14d"]
+
+[ext_resource type="Script" uid="uid://b2vulj03k1lx8" path="res://Scripts/AudioManager.cs" id="1_4tj6f"]
+[ext_resource type="AudioStream" uid="uid://dcat2232ynvvq" path="res://Assets/Audios/Sfx/explosion.wav" id="2_hhwve"]
+[ext_resource type="AudioStream" uid="uid://dpm48sk2rpg6n" path="res://Assets/Audios/Sfx/pickup.wav" id="3_hhwve"]
+[ext_resource type="AudioStream" uid="uid://yvmox12f8ago" path="res://Assets/Audios/Sfx/TransitionSfx.wav" id="4_qixve"]
+[ext_resource type="AudioStream" uid="uid://b2so6ovwveetm" path="res://Assets/Audios/Music/ArmadilloSong.wav" id="5_5kf6k"]
+[ext_resource type="AudioStream" uid="uid://bhp828d7t4igk" path="res://Assets/Audios/Music/TempleGroove.wav" id="6_tnn7g"]
+[ext_resource type="AudioStream" uid="uid://dfwa516kd8hvc" path="res://Assets/Audios/Music/DjMenuTheme.wav" id="7_lwpe1"]
+
+[node name="AudioManager" type="Node" node_paths=PackedStringArray("SfxExplosion", "SfxPickup", "SfxTransition", "DjMenuTheme", "TempleGroove", "ArmadilloBossSong")]
+script = ExtResource("1_4tj6f")
+SfxExplosion = NodePath("SfxExplosion")
+SfxPickup = NodePath("SfxPickup")
+SfxTransition = NodePath("SfxTransition")
+DjMenuTheme = NodePath("DjMenuTheme")
+TempleGroove = NodePath("TempleGroove")
+ArmadilloBossSong = NodePath("ArmadiloBossSong")
+
+[node name="SfxExplosion" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_hhwve")
+volume_db = -10.0
+
+[node name="SfxPickup" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_hhwve")
+volume_db = -5.0
+mix_target = 1
+
+[node name="SfxTransition" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_qixve")
+volume_db = -10.0
+
+[node name="ArmadiloBossSong" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_5kf6k")
+volume_db = -8.0
+pitch_scale = 1.1
+
+[node name="TempleGroove" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_tnn7g")
+volume_db = -8.0
+pitch_scale = 1.1
+
+[node name="DjMenuTheme" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_lwpe1")
+volume_db = -8.0
+pitch_scale = 1.1
+
+[connection signal="finished" from="ArmadiloBossSong" to="." method="_on_armadilo_boss_song_finished"]
+[connection signal="finished" from="TempleGroove" to="." method="_on_temple_groove_finished"]
+[connection signal="finished" from="DjMenuTheme" to="." method="_on_dj_menu_theme_finished"]
