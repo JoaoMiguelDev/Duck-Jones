@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://congpvxd3puov"]
 
 [ext_resource type="Script" uid="uid://dvfsj6esis88d" path="res://Scripts/Interactables/TempleDoorLock.cs" id="1_7jfsr"]
-[ext_resource type="Texture2D" uid="uid://c8gikt8ksfapt" path="res://Assets/Sprites/Interactables/Templates/DJLockTemp.png" id="1_by02a"]
+[ext_resource type="Texture2D" uid="uid://qt4l3ootgxo" path="res://Assets/Sprites/Interactables/Lock.png" id="2_6o66j"]
 [ext_resource type="AudioStream" uid="uid://i5bv77un77fl" path="res://Assets/Audios/Sfx/UnlockDoorSfx.wav" id="3_6o66j"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7jfsr"]
@@ -14,7 +14,7 @@ script = ExtResource("1_7jfsr")
 SfxUnlockDoor = NodePath("SfxUnlockDoor")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_by02a")
+texture = ExtResource("2_6o66j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_7jfsr")

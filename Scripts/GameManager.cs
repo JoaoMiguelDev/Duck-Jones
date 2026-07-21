@@ -76,4 +76,24 @@ public partial class GameManager : Node
 		AudioManager.Instance.StopAll();
 	}
 
+	public void HandleLevelChanging()
+	{
+		int level = LevelManager.Instance.CurrentLevel + 1;
+
+		switch (level)
+		{
+			case 1:
+				GameData.Instance.Level1CoinsCollected += duckJones.GoldCrumbles;
+				break;
+			case 2:
+				GameData.Instance.Level2CoinsCollected += duckJones.GoldCrumbles;
+				break;
+			case 3:
+				GameData.Instance.Level3CoinsCollected += duckJones.GoldCrumbles;
+				break;								
+		}
+
+		LevelManager.Instance.ChangeLevel();
+	}
+
 }

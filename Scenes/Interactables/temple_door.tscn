@@ -1,10 +1,39 @@
-[gd_scene load_steps=5 format=3 uid="uid://d2edsocoim1vg"]
+[gd_scene load_steps=9 format=3 uid="uid://d2edsocoim1vg"]
 
 [ext_resource type="Script" uid="uid://cjcfllald6dn6" path="res://Scripts/Interactables/TempleDoor.cs" id="1_056t5"]
-[ext_resource type="Texture2D" uid="uid://bhshebjuyxopm" path="res://Assets/Sprites/Interactables/Templates/DJtempsGate.png" id="1_axstq"]
+[ext_resource type="Texture2D" uid="uid://bf364dbk4h3rq" path="res://Assets/Sprites/Interactables/BossDoor-Sheet.png" id="2_056t5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vnphf"]
+atlas = ExtResource("2_056t5")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lwalj"]
+atlas = ExtResource("2_056t5")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c2q8g"]
+atlas = ExtResource("2_056t5")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_up121"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vnphf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lwalj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c2q8g")
+}],
+"loop": false,
+"name": &"open",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_056t5"]
-size = Vector2(32, 12)
+size = Vector2(33, 12)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vnphf"]
 size = Vector2(32, 12)
@@ -14,12 +43,14 @@ collision_layer = 64
 collision_mask = 0
 script = ExtResource("1_056t5")
 Collision = NodePath("CollisionShape2D")
-TempleDoorSprite = NodePath("Sprite2D")
+TempleDoorSprite = NodePath("AnimatedSprite2D")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_axstq")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_up121")
+animation = &"open"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 10)
 shape = SubResource("RectangleShape2D_056t5")
 
 [node name="SceneChangeArea" type="Area2D" parent="."]

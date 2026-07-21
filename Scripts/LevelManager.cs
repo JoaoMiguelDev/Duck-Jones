@@ -7,9 +7,10 @@ public partial class LevelManager : Node
 	private string[] Levels = {
 		"res://Scenes/Levels/level_1.tscn", 
 		"res://Scenes/Levels/level_2.tscn",
-		"res://Scenes/Levels/level_3.tscn"
+		"res://Scenes/Levels/level_3.tscn",
+		"res://Scenes/Levels/end.tscn"
 		}; //All new levels must be included here. Index 0 must be the main menu.
-	private int CurrentLevel = 0;
+	public int CurrentLevel { get; private set; } = 0;
 
     public override void _Ready()
     {
@@ -46,9 +47,15 @@ public partial class LevelManager : Node
 	private void ApplySceneSong()
 	{
 		if(CurrentLevel == 0)
+		{
+			AudioManager.Instance.StopAll();
 			AudioManager.Instance.PlayTempleGroove();
+		}
 		else if(CurrentLevel == 2)
 			AudioManager.Instance.StopAll();
+		else if(CurrentLevel == 3)
+			AudioManager.Instance.PlayDJMenuTheme();
+
 	}
 
 }

@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=3 uid="uid://ftt7cvm8vj2j"]
+
+[ext_resource type="Texture2D" uid="uid://mslramv4884o" path="res://Assets/Sprites/Interactables/wholeBread-Sheet.png" id="1_8bxyt"]
+[ext_resource type="Script" uid="uid://iqytwkife566" path="res://Scripts/Interactables/GoldBread.cs" id="1_b6rbc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b6rbc"]
+atlas = ExtResource("1_8bxyt")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ihqio"]
+atlas = ExtResource("1_8bxyt")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1yfyc"]
+atlas = ExtResource("1_8bxyt")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_06xt4"]
+atlas = ExtResource("1_8bxyt")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sdrw3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b6rbc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ihqio")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1yfyc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_06xt4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3vxhv"]
+size = Vector2(16, 16)
+
+[node name="GoldBread" type="Area2D"]
+collision_layer = 8192
+collision_mask = 128
+script = ExtResource("1_b6rbc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_sdrw3")
+autoplay = "default"
+frame_progress = 0.4760489
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_3vxhv")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

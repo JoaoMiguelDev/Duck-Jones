@@ -1,21 +1,51 @@
-[gd_scene load_steps=4 format=3 uid="uid://ctql1bd4m0sml"]
+[gd_scene load_steps=8 format=3 uid="uid://ctql1bd4m0sml"]
 
 [ext_resource type="Script" uid="uid://c8cgkuav18sc0" path="res://Scripts/Interactables/Door.cs" id="1_olwfu"]
-[ext_resource type="Texture2D" uid="uid://bhshebjuyxopm" path="res://Assets/Sprites/Interactables/Templates/DJtempsGate.png" id="2_8l2uc"]
+[ext_resource type="Texture2D" uid="uid://7mumnxdhu68g" path="res://Assets/Sprites/Interactables/NormalDoor-Sheet.png" id="2_olwfu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8l2uc"]
+atlas = ExtResource("2_olwfu")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j2o8d"]
+atlas = ExtResource("2_olwfu")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g1j00"]
+atlas = ExtResource("2_olwfu")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1x24x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8l2uc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j2o8d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g1j00")
+}],
+"loop": false,
+"name": &"open",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j2o8d"]
-size = Vector2(32, 12)
+size = Vector2(31, 12)
 
 [node name="Door" type="StaticBody2D" node_paths=PackedStringArray("Collision", "TempleDoorSprite")]
 collision_layer = 32
 collision_mask = 0
 script = ExtResource("1_olwfu")
 Collision = NodePath("CollisionShape2D")
-TempleDoorSprite = NodePath("Sprite2D")
+TempleDoorSprite = NodePath("AnimatedSprite2D")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0.7469115, 0, 0.4046151, 1)
-texture = ExtResource("2_8l2uc")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_1x24x")
+animation = &"open"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 9)
 shape = SubResource("RectangleShape2D_j2o8d")

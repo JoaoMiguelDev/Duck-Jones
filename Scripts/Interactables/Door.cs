@@ -4,18 +4,26 @@ using System;
 public partial class Door : StaticBody2D, IActivatable
 {
 	[Export] private CollisionShape2D Collision;
-	[Export] private Sprite2D TempleDoorSprite;
+	[Export] private AnimatedSprite2D TempleDoorSprite;
+	private bool opened = false;
 
     public void Activate()
     {
+		if(opened)
+			return;
+
+		opened = true;
 		Collision.CallDeferred("set_disabled", true);
-		TempleDoorSprite.Visible = false;
+		TempleDoorSprite.Play("open");
     }
 
 	public void Deactivate()
 	{
+		if (!opened)
+			return;
+		opened = false;
 		Collision.CallDeferred("set_disabled", false);
-		TempleDoorSprite.Visible = true;
+		TempleDoorSprite.PlayBackwards("open");
 	}
 
 }
