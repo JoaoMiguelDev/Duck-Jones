@@ -1,8 +1,44 @@
-[gd_scene load_steps=5 format=3 uid="uid://c6mjwam1krhat"]
+[gd_scene load_steps=10 format=3 uid="uid://c6mjwam1krhat"]
 
-[ext_resource type="Texture2D" uid="uid://dlkuj4u8x60pl" path="res://Assets/Sprites/Interactables/Templates/DJtempGold.png" id="1_aqypt"]
 [ext_resource type="Script" uid="uid://2hvg4jplhdy6" path="res://Scripts/Interactables/GoldCrumbleCollectable.cs" id="1_w20nt"]
 [ext_resource type="PackedScene" uid="uid://cmfjejpsdfjne" path="res://Scenes/UI/floating_points.tscn" id="2_ybuv5"]
+[ext_resource type="Texture2D" uid="uid://dn3ta08y2yeoh" path="res://Assets/Sprites/Interactables/GoldCrumble.png" id="3_ybuv5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n1cyh"]
+atlas = ExtResource("3_ybuv5")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ciwf7"]
+atlas = ExtResource("3_ybuv5")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pckew"]
+atlas = ExtResource("3_ybuv5")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oyi3w"]
+atlas = ExtResource("3_ybuv5")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mqann"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n1cyh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ciwf7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pckew")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oyi3w")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_w20nt"]
 radius = 8.0
@@ -13,8 +49,10 @@ collision_mask = 128
 script = ExtResource("1_w20nt")
 FloatingPointsScene = ExtResource("2_ybuv5")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_aqypt")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_mqann")
+autoplay = "default"
+frame_progress = 0.25798312
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_w20nt")

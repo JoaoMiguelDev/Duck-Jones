@@ -16,6 +16,7 @@ public partial class ArmadilloBoss : CharacterBody2D, IDamagable
 	[Export] private Timer StateTimer;
     [Export] private ShakyCamera shakyCamera;
     [Export] private AnimationPlayer HitFlashAnim;
+    [Export] private AnimatedSprite2D AnimatedSprite;
     [Export] private AudioStreamPlayer2D SfxBounce;
     [Export] private AudioStreamPlayer2D SfxHitPillar;
     [Export] public float RollSpeed = 150f;
@@ -101,6 +102,7 @@ public partial class ArmadilloBoss : CharacterBody2D, IDamagable
         else
         {
             RollDirection = -RollDirection;
+            UpdateSpriteRotation();
             shakyCamera.ScreenShake(2, 0.2f);
             SfxBounce.Play();
         }
@@ -110,6 +112,8 @@ public partial class ArmadilloBoss : CharacterBody2D, IDamagable
 	{
    		RollDirection = RollDirection.Bounce(collision.GetNormal());
     	RollDirection = ApplyRandomDeviation(RollDirection, BounceAngleVariance);
+        
+        UpdateSpriteRotation();
 
     	CurrentSpeed = Mathf.Min(CurrentSpeed + BounceSpeedIncrease, MaxRollSpeed);
 
@@ -121,24 +125,28 @@ public partial class ArmadilloBoss : CharacterBody2D, IDamagable
     private void EnterState(BossState newState)
     {
         CurrentState = newState;
+        AnimatedSprite.Play(newState.ToString());
 
         switch (newState)
         {
             case BossState.Idle:
                 Velocity = Vector2.Zero;
 				CurrentSpeed = RollSpeed;
+                AnimatedSprite.Rotation = 0f;
                 StateTimer.Start(IdleDuration);
                 break;
 
             case BossState.Rolling:
                 RollDirection = GetRandomDirection();
 				CurrentSpeed = RollSpeed;
+                UpdateSpriteRotation();
                 break;
 
             case BossState.Stunned:
                 Velocity = Vector2.Zero;
 				CurrentSpeed = RollSpeed;
-                CanTakeDamageThisStun = true; 
+                CanTakeDamageThisStun = true;
+                AnimatedSprite.Rotation = 0f; 
                 StateTimer.Start(StunDuration);
                 break;
         }
@@ -199,4 +207,9 @@ public partial class ArmadilloBoss : CharacterBody2D, IDamagable
 			damagable.TakeDamage(1);
 		}
 	}
+
+    private void UpdateSpriteRotation()
+    {
+        AnimatedSprite.Rotation = Vector2.Down.AngleTo(RollDirection);
+    }
 }

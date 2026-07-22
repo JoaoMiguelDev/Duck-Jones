@@ -1,20 +1,44 @@
-[gd_scene load_steps=5 format=3 uid="uid://cmne73uwx50lx"]
+[gd_scene load_steps=8 format=3 uid="uid://cmne73uwx50lx"]
 
 [ext_resource type="Script" uid="uid://djrlcib33sdrc" path="res://Scripts/Interactables/PressurePlate.cs" id="1_3pnss"]
-[ext_resource type="Texture2D" uid="uid://dbnuv2sjr6ewk" path="res://Assets/Sprites/Interactables/Templates/DJtempPressurePlate.png" id="2_804tt"]
+[ext_resource type="Texture2D" uid="uid://cu22lodkr5tsj" path="res://Assets/Sprites/Obstacles/PreassurePlate-Sheet.png" id="2_804tt"]
 [ext_resource type="AudioStream" uid="uid://dhwi343cour0l" path="res://Assets/Audios/Sfx/PressurePlateSfx.wav" id="3_804tt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bhnmj"]
+atlas = ExtResource("2_804tt")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o572k"]
+atlas = ExtResource("2_804tt")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fh5uk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bhnmj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o572k")
+}],
+"loop": false,
+"name": &"activate",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bhnmj"]
 size = Vector2(12, 12)
 
-[node name="PressurePlate" type="Area2D" node_paths=PackedStringArray("SfxPress")]
+[node name="PressurePlate" type="Area2D" node_paths=PackedStringArray("SfxPress", "sprite2D")]
 collision_layer = 16384
 collision_mask = 128
 script = ExtResource("1_3pnss")
 SfxPress = NodePath("PressSfx")
+sprite2D = NodePath("AnimatedSprite2D")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_804tt")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_fh5uk")
+animation = &"activate"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_bhnmj")
