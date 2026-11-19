@@ -53,7 +53,7 @@ Jogo criado ao longo de duas semanas durante uma atividade da **CNTRL'R**, proje
 | Nome | Função | LinkedIn |
 |---|---|---|
 | **Giulia Sousa** | Artes (animações e tileset) | [LinkedIn](www.linkedin.com/in/giulia-sousa-992087295) |
-| **João Miguel** | Código, áudio e arte da HUD | [LinkedIn](https://www.linkedin.com/in/jo%C3%A3o-miguel-19bb82371/) |
+| **João Miguel de Freitas** | Código, áudio e arte da HUD | [LinkedIn](https://www.linkedin.com/in/jo%C3%A3o-miguel-19bb82371/) |
 
 **CNTRL'R:** [LinkedIn da equipe](https://www.linkedin.com/company/cntrlr/home/)
 
@@ -102,6 +102,6 @@ Game created over the course of two weeks during a **CNTRL'R** activity, an exte
 | Name | Role | LinkedIn |
 |---|---|---|
 | **Giulia Sousa** | Art (animations and tileset) | [LinkedIn](www.linkedin.com/in/giulia-sousa-992087295) |
-| **João Miguel** | Code, audio and HUD art | [LinkedIn](https://www.linkedin.com/in/jo%C3%A3o-miguel-19bb82371/) |
+| **João Miguel de Freitas** | Code, audio and HUD art | [LinkedIn](https://www.linkedin.com/in/jo%C3%A3o-miguel-19bb82371/) |
 
 **CNTRL'R:** [Team LinkedIn](https://www.linkedin.com/company/cntrlr/home/)
