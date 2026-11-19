@@ -48,7 +48,7 @@ Em fase final de desenvolvimento.
 
 ### Equipe
 
-Jogo criado durante uma atividade da **CNTRL'R**, projeto de extensão da **POLI UPE** focado em produção e competição de jogos, ao longo de duas semanas. Todos os assets (artes, áudio e código) foram produzidos pela equipe.
+Jogo criado ao longo de duas semanas durante uma atividade da **CNTRL'R**, projeto de extensão da **POLI UPE** focado em produção e competição de jogos. Todos os assets (artes, áudio e código) foram produzidos pela equipe.
 
 | Nome | Função | LinkedIn |
 |---|---|---|
@@ -97,7 +97,7 @@ In final development phase.
 
 ### Team
 
-Game created during a **CNTRL'R** activity, an extension project of **POLI UPE** focused on game production and competition, over the course of two weeks. All assets (art, audio and code) were produced by the team.
+Game created over the course of two weeks during a **CNTRL'R** activity, an extension project of **POLI UPE** focused on game production and competition. All assets (art, audio and code) were produced by the team.
 
 | Name | Role | LinkedIn |
 |---|---|---|
