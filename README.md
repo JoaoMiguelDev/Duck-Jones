@@ -1,6 +1,6 @@
 <!-- BANNER / CAPA: coloque aqui a imagem de capa do jogo -->
 <p align="center">
-  <img src="Assets\Sprites\DuckJonesIcon3.png" alt="Duck Jones - banner" width="100%">
+  <img src="Assets\Sprites\DuckJonesIcon3.png" alt="Duck Jones - banner" width="40%">
 </p>
 
 <h1 align="center">Duck Jones</h1>
